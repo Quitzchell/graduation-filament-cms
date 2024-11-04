@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('template_id')->nullable();
+            $table->string('template')->nullable();
             $table->boolean('locked')->default(false);
             $table->timestamps();
             $table->softDeletes();

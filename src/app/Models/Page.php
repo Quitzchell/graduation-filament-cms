@@ -13,9 +13,4 @@ class Page extends Model
         'template_id'
     ];
 
-    /* Relations */
-    public function template(): BelongsTo
-    {
-        return $this->belongsTo(Template::class);
-    }
 }
