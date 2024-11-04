@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Page extends Model
 {
     protected $table = 'pages';
+
     protected $fillable = [
         'name',
         'template',
