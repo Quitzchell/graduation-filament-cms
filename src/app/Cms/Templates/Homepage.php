@@ -14,12 +14,14 @@ class Homepage implements TemplateContract
     public static function getForm(): array
     {
         return [
+            TextInput::make('header_title')
+                ->label('Header title')
+                ->required(),
+
             FileUpload::make('header_image')
                 ->label('Header image')
                 ->live()
                 ->required(),
-            TextInput::make('header_title')
-                ->label('Header title'),
 
             Builder::make('content')->schema([
                 Paragraph::getBlock()
