@@ -10,7 +10,12 @@ class Page extends Model
     protected $table = 'pages';
     protected $fillable = [
         'name',
-        'template_id'
+        'template',
+        'data'
+    ];
+
+    protected $casts = [
+        'data' => 'array'
     ];
 
 }
