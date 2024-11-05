@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources\PageResource\Pages;
 
+use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateTemplateData;
+use App\Models\Page;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    use MutateTemplateData;
 
     protected static string $resource = PageResource::class;
 
@@ -22,17 +22,32 @@ class EditPage extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        foreach ($data['data'] as $key => $templateData) {
-            $data[$key] = $templateData;
-        }
+        if ($data['content']) {
+            foreach ($data['content'] as $key => $templateData) {
+                $data[$key] = $templateData;
+            }
 
-        unset($data['data']);
+            unset($data['content']);
+        }
 
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        return $this->mutateTemplateData($data);
+        $templateData = [];
+
+        if (isset($data['template'])) {
+            $templateFields = TemplateFactory::getTemplateFields($data['template']);
+
+            foreach ($templateFields as $field) {
+                $templateData[$field] = $data[$field];
+                unset($data[$field]);
+            }
+        }
+
+        $data['data'] = $templateData;
+
+        return $data;
     }
 }
