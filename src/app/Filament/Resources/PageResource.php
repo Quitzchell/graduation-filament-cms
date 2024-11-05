@@ -4,12 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource\Pages;
-use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Get;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -40,8 +38,8 @@ class PageResource extends Resource
                         }
 
                         return [];
-                    })
-                ])
+                    }),
+                ]),
             ])
             ->model(Page::class);
     }
@@ -50,7 +48,7 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
                 //

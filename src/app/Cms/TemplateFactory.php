@@ -3,7 +3,6 @@
 namespace App\Cms;
 
 use App\Cms\Templates\Homepage;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class TemplateFactory
 {
@@ -18,9 +17,10 @@ class TemplateFactory
     {
         return self::extractFieldNames(self::loadTemplateSchema($template));
     }
+
     public static function loadTemplateSchema(string $template): array
     {
-        return class_exists($template) ? (new $template())->getForm() : [];
+        return class_exists($template) ? (new $template)->getForm() : [];
     }
 
     protected static function extractFieldNames(array $components): array

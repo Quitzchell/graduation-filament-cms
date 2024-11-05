@@ -2,7 +2,6 @@
 
 namespace App\Cms\Blocks;
 
-
 use App\Cms\Blocks\Interfaces\BlockContract;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
@@ -25,8 +24,8 @@ class Paragraph implements BlockContract
                         'italic',
                         'underline',
                         'orderedList',
-                        'bulletList'
-                    ])
+                        'bulletList',
+                    ]),
             ]);
     }
 }
