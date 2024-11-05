@@ -2,13 +2,16 @@
 
 namespace App\Filament\Resources\PageResource\Pages;
 
-use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource;
+use App\Filament\Resources\Traits\MutateDataBeforeSaveTrait;
+use App\Filament\Resources\Traits\SaveUrlableTrait;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
+    use MutateDataBeforeSaveTrait;
+
     protected static string $resource = PageResource::class;
 
     protected function getHeaderActions(): array
@@ -33,19 +36,6 @@ class EditPage extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $templateData = [];
-
-        if (isset($data['template'])) {
-            $templateFields = TemplateFactory::getTemplateFields($data['template']);
-
-            foreach ($templateFields as $field) {
-                $templateData[$field] = $data[$field];
-                unset($data[$field]);
-            }
-        }
-
-        $data['data'] = $templateData;
-
-        return $data;
+        return $this->mutateData($data);
     }
 }
