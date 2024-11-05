@@ -8,13 +8,12 @@ use Filament\Forms\Components\FileUpload;
 
 class Image implements BlockContract
 {
-
     public static function getBlock(): Block
     {
         return Block::make('image')
             ->schema([
                 FileUpload::make('image')
-                    ->label('image')
+                    ->label('image'),
             ]);
     }
 }
