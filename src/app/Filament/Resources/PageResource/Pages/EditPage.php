@@ -3,14 +3,15 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateDataBeforeSaveTrait;
+use App\Filament\Resources\Traits\MutateDataBeforeTrait;
 use App\Filament\Resources\Traits\SaveUrlableTrait;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    use MutateDataBeforeSaveTrait;
+    use MutateDataBeforeTrait;
+    use SaveUrlableTrait;
 
     protected static string $resource = PageResource::class;
 
@@ -27,8 +28,6 @@ class EditPage extends EditRecord
             foreach ($data['content'] as $key => $templateData) {
                 $data[$key] = $templateData;
             }
-
-            unset($data['content']);
         }
 
         return $data;
@@ -37,5 +36,11 @@ class EditPage extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         return $this->mutateData($data);
+    }
+
+    protected function afterSave(): void
+    {
+        $data = $this->form->getState();
+        $this->saveUrlable($this->record, $data);
     }
 }

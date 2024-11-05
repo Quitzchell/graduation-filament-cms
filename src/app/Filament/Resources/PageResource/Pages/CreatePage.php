@@ -3,12 +3,12 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateDataBeforeSaveTrait;
+use App\Filament\Resources\Traits\MutateDataBeforeTrait;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreatePage extends CreateRecord
 {
-    use MutateDataBeforeSaveTrait;
+    use MutateDataBeforeTrait;
 
     protected static string $resource = PageResource::class;
 
