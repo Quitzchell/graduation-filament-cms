@@ -2,6 +2,8 @@
 
 namespace App\Cms\Templates;
 
+use App\Cms\Blocks\About;
+use App\Cms\Blocks\CallToAction;
 use App\Cms\Blocks\Image;
 use App\Cms\Blocks\Paragraph;
 use App\Cms\Templates\Interfaces\TemplateContract;
@@ -23,8 +25,10 @@ class Homepage implements TemplateContract
                 ->required(),
 
             Builder::make('content')->schema([
-                Paragraph::getBlock(),
+                About::getBlock(),
+                CallToAction::getBlock(),
                 Image::getBlock(),
+                Paragraph::getBlock(),
             ]),
         ];
     }
