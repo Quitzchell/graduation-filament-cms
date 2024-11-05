@@ -6,7 +6,6 @@ use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class CreatePage extends CreateRecord
 {
