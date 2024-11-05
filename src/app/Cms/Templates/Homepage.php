@@ -8,9 +8,7 @@ use App\Cms\Templates\Interfaces\TemplateContract;
 use App\Models\Page;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Homepage implements TemplateContract
 {
