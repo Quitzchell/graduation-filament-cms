@@ -7,6 +7,7 @@ use App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -41,7 +42,8 @@ class PageResource extends Resource
                         return [];
                     })
                 ])
-            ]);
+            ])
+            ->model(Page::class);
     }
 
     public static function table(Table $table): Table

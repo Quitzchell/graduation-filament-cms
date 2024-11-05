@@ -2,19 +2,32 @@
 
 namespace App\Filament\Resources\PageResource\Pages;
 
+use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateTemplateData;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class CreatePage extends CreateRecord
 {
-    use MutateTemplateData;
 
     protected static string $resource = PageResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        return $this->mutateTemplateData($data);
+        $templateData = [];
+
+        if (isset($data['template'])) {
+            $templateFields = TemplateFactory::getTemplateFields($data['template']);
+
+            foreach ($templateFields as $field) {
+                $templateData[$field] = $data[$field];
+                unset($data[$field]);
+            }
+        }
+
+        $data['content'] = $templateData;
+
+        return $data;
     }
 }

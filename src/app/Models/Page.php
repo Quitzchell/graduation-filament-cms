@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
 class Page extends Model
 {
     protected $table = 'pages';
@@ -12,11 +13,10 @@ class Page extends Model
     protected $fillable = [
         'name',
         'template',
-        'data'
+        'content',
     ];
 
     protected $casts = [
-        'data' => 'array'
+        'content' => 'array',
     ];
-
 }
