@@ -1,0 +1,11 @@
+tmp
+.git
+.env
+.env.example
+.editorconfig
+.dockerignore
+docker-compose.yml
+dev.dockerfile
+Makefile
+README.md
+
