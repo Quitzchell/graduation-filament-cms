@@ -8,8 +8,6 @@ services:
                 IMAGE: allesonline/laravel:php8.3-node20-alpine3.19-dev
         user:
             docker:docker
-        ports:
-            - "8080:8080"
         labels:
             - "traefik.enable=true"
             - "traefik.docker.network=traefik_network"
@@ -28,7 +26,7 @@ services:
         extra_hosts:
             - "graduation-project-admin.local.alles.onl:host-gateway"
         volumes:
-            - ./src:/var/www/html
+            - .:/var/www/html
         networks:
             - default
             - traefik_network
