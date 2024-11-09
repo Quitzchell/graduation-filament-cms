@@ -34,7 +34,8 @@ class CallToAction implements BlockContract
 
                         foreach (config('urlable.models') as $modelClass) {
                             foreach ($modelClass::all() as $instance) {
-                                $options["{$modelClass}:{$instance->id}"] = sprintf('%s - %s', class_basename($modelClass), $instance->title ?? $instance->name);
+                                $options["{$modelClass}:{$instance->id}"] = sprintf('%s - %s',
+                                    class_basename($modelClass), $instance->title ?? $instance->name);
                             }
                         }
 
