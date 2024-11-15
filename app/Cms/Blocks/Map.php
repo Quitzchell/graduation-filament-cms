@@ -6,6 +6,7 @@ use App\Cms\Blocks\Interfaces\BlockContract;
 use Cheesegrits\FilamentGoogleMaps\Fields\Map as GoogleMapPicker;
 use Cheesegrits\FilamentGoogleMaps\Fields\Geocomplete;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 
 class Map implements BlockContract
@@ -17,21 +18,21 @@ class Map implements BlockContract
             ->schema([
                 TextInput::make('title')
                     ->label('Title'),
-                TextInput::make('text')
-                    ->label('Text'),
+                RichEditor::make('text')
+                    ->label('Text')
+                    ->toolbarButtons([
+                        'h1',
+                        'h2',
+                        'bold',
+                        'italic',
+                        'underline',
+                        'orderedList',
+                        'bulletList',
+                    ]),
 
                 GoogleMapPicker::make('location')
                     ->label('Location')
-                    ->geolocateOnLoad()
-                    ->reactive()
-                    ->afterStateHydrated(function ($state, $record, callable $set) {
-                        if ($record) {
-                            $set('location', [
-                                'lat' => $record->location['lat'] ?? null,
-                                'lng' => $record->location['lng'] ?? null,
-                            ]);
-                        }
-                    })
+                    ->draggable(false)
                     ->mapControls([
                         'mapTypeControl' => false,
                         'scaleControl' => false,
@@ -41,19 +42,23 @@ class Map implements BlockContract
                         'searchBoxControl' => false,
                         'zoomControl' => false,
                     ]),
+
                 Geocomplete::make('address')
                     ->label('Address')
                     ->placeholder('Start typing an address...')
-                    ->geocodeOnLoad()
                     ->isLocation()
-                    ->reactive()
-                    ->afterStateHydrated(function ($state, $record, callable $set) {
-                        if ($record) {
-                            $set('address', $record->address ?? '');
+                    ->geocodeOnLoad()
+                    ->minChars(5)
+                    ->live()
+                    ->afterStateHydrated(function ($state, callable $set) {
+                        if ($state['formatted'] || !$state['formatted_address']) {
+                            $set('address.formatted_address', $state['formatted']);
                         }
                     })
-                    ->live()
                     ->afterStateUpdated(function ($state, callable $set) {
+                        if (!empty($state['formatted_address'])) {
+                            $set('address.formatted', $state['formatted_address']);
+                        }
                         if (!empty($state['lat']) && !empty($state['lng'])) {
                             $set('location.lat', $state['lat']);
                             $set('location.lng', $state['lng']);
