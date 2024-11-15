@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable()->index();
             $table->string('name');
+            $table->string('uri')->unique()->nullable();
             $table->string('template')->nullable();
+            $table->json('content')->nullable();
             $table->boolean('locked')->default(false);
             $table->timestamps();
             $table->softDeletes();
