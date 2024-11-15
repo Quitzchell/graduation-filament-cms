@@ -13,6 +13,7 @@ class Page extends Model implements UrlableContract
 
     protected $fillable = [
         'name',
+        'uri',
         'template',
         'content',
         'parent_id',
