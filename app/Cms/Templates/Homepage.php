@@ -22,6 +22,7 @@ class Homepage implements TemplateContract
             FileUpload::make('header_image')
                 ->label('Header Image')
                 ->image()
+                ->preserveFilenames()
                 ->required(),
 
             Builder::make('blocks')->schema([
