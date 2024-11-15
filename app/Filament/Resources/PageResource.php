@@ -8,9 +8,11 @@ use App\Models\Page;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class PageResource extends Resource
 {
@@ -25,7 +27,20 @@ class PageResource extends Resource
                 Forms\Components\Section::make()->schema([
                     Forms\Components\TextInput::make('name')
                         ->label('Page title')
-                        ->required(),
+                        ->required()
+                        ->unique(ignoreRecord: true)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                            if (($get('uri') ?? '') !== Str::slug($old)) {
+                                return;
+                            }
+                            $set('uri', Str::slug($state));
+                        }),
+
+                    Forms\Components\TextInput::make('uri')
+                        ->label('Page uri')
+                        ->unique(ignoreRecord: true)
+                        ->readOnly(),
 
                     Forms\Components\Select::make('template')
                         ->options(TemplateFactory::getTemplateNames())
