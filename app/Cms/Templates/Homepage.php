@@ -2,7 +2,6 @@
 
 namespace App\Cms\Templates;
 
-use App\Cms\Blocks\About;
 use App\Cms\Blocks\CallToAction;
 use App\Cms\Blocks\Image;
 use App\Cms\Blocks\Map;
@@ -26,7 +25,6 @@ class Homepage implements TemplateContract
                 ->required(),
 
             Builder::make('content')->schema([
-                About::getBlock(),
                 CallToAction::getBlock(),
                 Image::getBlock(),
                 Map::getBlock(),
