@@ -55,8 +55,7 @@ class PageResource extends Resource
                         return [];
                     }),
                 ]),
-            ])
-            ->model(Page::class);
+            ]);
     }
 
     public static function table(Table $table): Table
