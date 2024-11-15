@@ -24,7 +24,7 @@ class Homepage implements TemplateContract
                 ->image()
                 ->required(),
 
-            Builder::make('content')->schema([
+            Builder::make('blocks')->schema([
                 CallToAction::getBlock(),
                 Image::getBlock(),
                 Map::getBlock(),
