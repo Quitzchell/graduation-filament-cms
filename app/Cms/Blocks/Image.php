@@ -13,7 +13,9 @@ class Image implements BlockContract
         return Block::make('image')
             ->schema([
                 FileUpload::make('image')
-                    ->label('image'),
+                    ->label('image')
+                    ->image()
+                    ->preserveFilenames(),
             ]);
     }
 }
