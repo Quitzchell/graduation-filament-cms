@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cms\Blocks;
+namespace App\Cms\Blocks\Common;
 
 use App\Cms\Blocks\Interfaces\BlockContract;
 use Filament\Forms\Components\Builder\Block;
@@ -11,7 +11,8 @@ class Paragraph implements BlockContract
 {
     public static function getBlock(): Block
     {
-        return Block::make('paragraph')
+        return Block::make('common\paragraph')
+            ->label('Paragraph')
             ->schema([
                 TextInput::make('title')
                     ->label('Title'),
@@ -27,5 +28,13 @@ class Paragraph implements BlockContract
                         'bulletList',
                     ]),
             ]);
+    }
+
+    public static function resolve(array $data)
+    {
+        return [
+            'title' => $data['title'],
+            'text' => $data['text'],
+        ];
     }
 }

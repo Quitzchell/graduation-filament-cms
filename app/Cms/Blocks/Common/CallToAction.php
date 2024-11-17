@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cms\Blocks;
+namespace App\Cms\Blocks\Common;
 
 use App\Cms\Blocks\Interfaces\BlockContract;
 use Filament\Forms\Components\Builder\Block;
@@ -12,7 +12,8 @@ class CallToAction implements BlockContract
 {
     public static function getBlock(): Block
     {
-        return Block::make('callToAction')
+        return Block::make('common\callToAction')
+            ->label('Call to Action')
             ->schema([
                 TextInput::make('title')
                     ->label('Title'),
@@ -32,7 +33,7 @@ class CallToAction implements BlockContract
                     ->options(function () {
                         $options = [];
 
-                        foreach (config('urlable.models') as $modelClass) {
+                        foreach (getUrlableModels() as $modelClass) {
                             foreach ($modelClass::all() as $instance) {
                                 $options["{$modelClass}:{$instance->id}"] = sprintf('%s - %s',
                                     class_basename($modelClass), $instance->title ?? $instance->name);
@@ -45,5 +46,17 @@ class CallToAction implements BlockContract
                 TextInput::make('button_text')
                     ->label('Button text'),
             ]);
+    }
+
+    public static function resolve(array $data)
+    {
+        [$classname, $id] = explode(':', $data['urlable_id']);
+
+        return [
+            'title' => $data['title'],
+            'text' => $data['text'],
+            'buttonUrl' => $classname::find($id)->uri(),
+            'buttonText' => $data['button_text'],
+        ];
     }
 }
