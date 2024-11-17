@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Menu;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,11 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable()->index();
+            $table->foreignIdFor(Menu::class)->nullable()->index()->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('uri')->unique()->nullable();
             $table->string('template')->nullable();
             $table->json('content')->nullable();
-            $table->boolean('locked')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
