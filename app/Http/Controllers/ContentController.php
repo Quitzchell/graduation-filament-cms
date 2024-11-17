@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cms\Templates\Interfaces\TemplateContract;
 use App\Models\Page;
 
 class ContentController
@@ -11,9 +12,18 @@ class ContentController
         if (in_array($uri, ['/', null])) {
             $uri = 'home';
         }
-        $page = Page::where('uri', $uri)->get();
+        $page = Page::where('uri', $uri)->first();
 
-        dd($page);
+        if (! $page) {
+            abort(404);
+        }
+
+        $template = new $page->template;
+        if ($template instanceof TemplateContract) {
+            $renderer = $template->getRenderer();
+
+            return $renderer->execute($page);
+        }
 
         abort(404);
     }

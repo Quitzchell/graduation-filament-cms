@@ -2,15 +2,13 @@
 
 namespace App\Cms;
 
-use App\Cms\Templates\Homepage;
+use App\Cms\Templates\Enums\Templates;
 
 class TemplateFactory
 {
     public static function getTemplateNames(): array
     {
-        return [
-            Homepage::class => class_basename(Homepage::class),
-        ];
+        return Templates::getFormattedNames();
     }
 
     public static function getTemplateFields(string $template): array
