@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Cms\Templates;
+namespace App\Cms\Templates\Homepage;
 
-use App\Cms\Blocks\CallToAction;
-use App\Cms\Blocks\Image;
-use App\Cms\Blocks\Map;
-use App\Cms\Blocks\Paragraph;
+use App\Cms\Actions\BlockResolver;
+use App\Cms\Actions\TemplateResolver;
+use App\Cms\Blocks\Common\CallToAction;
+use App\Cms\Blocks\Common\Image;
+use App\Cms\Blocks\Common\Map;
+use App\Cms\Blocks\Common\Paragraph;
+use App\Cms\Templates\Homepage\Actions\ResolveHomepageAction;
 use App\Cms\Templates\Interfaces\TemplateContract;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
@@ -32,5 +35,10 @@ class Homepage implements TemplateContract
                 Paragraph::getBlock(),
             ]),
         ];
+    }
+
+    public function getRenderer(): TemplateResolver
+    {
+        return new ResolveHomepageAction(new BlockResolver);
     }
 }

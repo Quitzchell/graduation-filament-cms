@@ -13,10 +13,11 @@ class Page extends Model implements UrlableContract
 
     protected $fillable = [
         'name',
+        'parent_id',
+        'menu_id',
         'uri',
         'template',
         'content',
-        'parent_id',
     ];
 
     protected $casts = [
@@ -24,6 +25,11 @@ class Page extends Model implements UrlableContract
     ];
 
     /* Relations */
+    public function menu(): BelongsTo
+    {
+        return $this->belongsTo(Menu::class);
+    }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Page::class, 'parent_id');
@@ -32,6 +38,15 @@ class Page extends Model implements UrlableContract
     public function children(): HasMany
     {
         return $this->hasMany(Page::class, 'parent_id');
+    }
+
+    public function content(string $name): string|array|null
+    {
+        if (array_key_exists($name, $this->content)) {
+            return $this->content[$name];
+        }
+
+        return null;
     }
 
     /* Urlable */

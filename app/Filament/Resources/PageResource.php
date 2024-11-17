@@ -42,6 +42,8 @@ class PageResource extends Resource
                         ->unique(ignoreRecord: true)
                         ->readOnly(),
 
+                    // todo: add menu placement option
+
                     Forms\Components\Select::make('template')
                         ->options(TemplateFactory::getTemplateNames())
                         ->required()
@@ -62,18 +64,17 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Page name'),
+                Tables\Columns\TextColumn::make('template')
+                    ->formatStateUsing(fn ($state) => class_basename($state)),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteAction::make(),
             ]);
     }
 
