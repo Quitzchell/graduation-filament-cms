@@ -1,5 +1,6 @@
 <?php
 
+use App\Cms\Actions\RenderNavigation;
 use App\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::any('/', [ContentController::class, 'getIndex']);
+Route::get('/navigation', RenderNavigation::class);
+
 Route::any('{all}', [ContentController::class, 'getIndex'])
     ->where('all', '.*')
     ->name('content');
