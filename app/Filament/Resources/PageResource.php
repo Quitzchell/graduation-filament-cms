@@ -42,8 +42,6 @@ class PageResource extends Resource
                         ->unique(ignoreRecord: true)
                         ->readOnly(),
 
-                    // todo: add menu placement option
-
                     Forms\Components\Select::make('template')
                         ->options(TemplateFactory::getTemplateNames())
                         ->required()

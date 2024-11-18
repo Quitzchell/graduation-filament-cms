@@ -4,8 +4,7 @@ namespace App\Models;
 
 use App\Models\Interface\UrlableContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Page extends Model implements UrlableContract
 {
@@ -25,19 +24,9 @@ class Page extends Model implements UrlableContract
     ];
 
     /* Relations */
-    public function menu(): BelongsTo
+    public function menus(): BelongsToMany
     {
-        return $this->belongsTo(Menu::class);
-    }
-
-    public function parent(): BelongsTo
-    {
-        return $this->belongsTo(Page::class, 'parent_id');
-    }
-
-    public function children(): HasMany
-    {
-        return $this->hasMany(Page::class, 'parent_id');
+        return $this->belongsToMany(Menu::class);
     }
 
     public function content(string $name): string|array|null
