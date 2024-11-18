@@ -8,8 +8,8 @@ if (! function_exists('getUrlableModels')) {
     {
         // Fetch all PHP files in the app/Models directory
         return collect(File::allFiles(app_path('Models')))
-            ->map(fn($file) => 'App\\Models\\' . $file->getBasename('.php'))
-            ->filter(fn($className) => class_exists($className)
+            ->map(fn ($file) => 'App\\Models\\'.$file->getBasename('.php'))
+            ->filter(fn ($className) => class_exists($className)
                 && (new ReflectionClass($className))->implementsInterface(UrlableContract::class))
             ->values()
             ->all();
