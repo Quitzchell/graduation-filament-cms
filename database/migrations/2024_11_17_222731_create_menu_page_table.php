@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Menu;
+use App\Models\Page;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('menu_page', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('uri')->unique()->nullable();
-            $table->string('template')->nullable();
-            $table->json('content')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Page::class)->constrained()->cascadeOnDelete();
+            $table->json('children')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('menu_page');
     }
 };
