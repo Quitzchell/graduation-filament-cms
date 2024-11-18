@@ -48,7 +48,7 @@ class MenuResource extends Resource
                                         ->relationship('page', 'name')
                                         ->label('Child Page')
                                 )
-                                ->afterStateHydrated(function ($record, $get, Forms\Set $set, $state) {
+                                ->afterStateHydrated(function ($record, $get, Forms\Set $set) {
                                     if ($record) {
                                         $recordKey = $record->getKey();
                                         $set("../../menuPages.record-$recordKey.children", array_map(function ($child) {
