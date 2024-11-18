@@ -4,12 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MenuResource\Pages;
 use App\Models\Menu;
-use App\Models\Page;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
-use Filament\Support\Components\Component;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -27,42 +27,41 @@ class MenuResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make()->schema([
-                    Forms\Components\Repeater::make('pages')
-                        ->label('Pages')
-                        ->relationship('Pages')
+                    Forms\Components\Repeater::make('menuPages')
+                        ->label('Menu items')
+                        ->relationship()
+                        ->collapsible()
                         ->schema([
                             Select::make('page_id')
-                                ->label('Page')
-                                ->relationship('menu.pages', 'name')
-                                ->preload(10)
-                                ->searchable()
-                                ->required(),
+                                ->label('Menu item')
+                                ->relationship('page', 'name')
+                                ->required()
+                                ->reactive(),
+
+
+                            Repeater::make('children')
+                                ->label('Submenu items')
+                                ->hidden(fn(Get $get): bool => empty($get('page_id')))
+                                ->reactive()
+                                ->simple(
+                                    Select::make('child_id')
+                                        ->relationship('page', 'name')
+                                        ->label('Child Page')
+                                )
+                                ->afterStateHydrated(function ($record, $get, Forms\Set $set, $state) {
+                                    if ($record) {
+                                        $recordKey = $record->getKey();
+                                        $set("../../menuPages.record-$recordKey.children", array_map(function ($child) {
+                                            return ['child_id' => $child];
+                                        }, $record->children));
+                                    }
+                                }),
                         ])
-                        ->saveRelationshipsUsing(function ($state, $record) {
-                            foreach ($record->pages as $existingPage) {
-                                if (! collect($state)->contains('page_id', $existingPage->id)) {
-                                    $existingPage->menu_id = null;
-                                    $existingPage->save();
-                                }
-                            }
+                        ->mutateRelationshipDataBeforeSaveUsing(function ($data, $record) {
+                            $record->page_id = $data['page_id'];
+                            $record->children = $data['children'] ?? [];
 
-                            foreach ($state as $page) {
-                                $pageModel = Page::find($page['page_id']);
-
-                                if ($pageModel) {
-                                    $pageModel->menu_id = $record->getKey();
-                                    $pageModel->save();
-                                }
-                            }
-
-                            $record->load('pages');
-                        })
-                        ->afterStateHydrated(function (Component $component, $record, callable $get, callable $set) {
-                            if ($record && $record->pages->isNotEmpty()) {
-                                $set('pages', $record->pages->map(function ($page) {
-                                    return ['page_id' => $page->id];
-                                })->toArray());
-                            }
+                            $record->save();
                         }),
                 ]),
             ]);
