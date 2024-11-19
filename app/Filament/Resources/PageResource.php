@@ -4,18 +4,19 @@ namespace App\Filament\Resources;
 
 use App\Cms\TemplateFactory;
 use App\Filament\Resources\PageResource\Pages;
+use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Page;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 
 class PageResource extends Resource
 {
+    use UniqueSlugTrait;
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -28,19 +29,14 @@ class PageResource extends Resource
                     Forms\Components\TextInput::make('name')
                         ->label('Page title')
                         ->required()
-                        ->unique(ignoreRecord: true)
+                        ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                            if (($get('uri') ?? '') !== Str::slug($old)) {
-                                return;
-                            }
-                            $set('uri', Str::slug($state));
-                        }),
+                        ->afterStateUpdated(static::createSlug()),
 
                     Forms\Components\TextInput::make('uri')
                         ->label('Page uri')
                         ->unique(ignoreRecord: true)
-                        ->readOnly(),
+                        ->required(),
 
                     Forms\Components\Select::make('template')
                         ->options(TemplateFactory::getTemplateNames())
@@ -65,7 +61,7 @@ class PageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Page name'),
                 Tables\Columns\TextColumn::make('template')
-                    ->formatStateUsing(fn ($state) => class_basename($state)),
+                    ->formatStateUsing(fn($state) => class_basename($state)),
             ])
             ->filters([
                 //
