@@ -67,7 +67,7 @@ class Map implements BlockContract
             ]);
     }
 
-    public static function resolve(array $block)
+    public static function resolve(array $block): array
     {
         return [
             'title' => $block['title'],
