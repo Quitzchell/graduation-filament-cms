@@ -4,9 +4,9 @@ namespace App\Filament\Resources\Traits;
 
 use App\Cms\TemplateFactory;
 
-trait MutateDataBeforeTrait
+trait MutateDataBeforeCreateOrUpdateTrait
 {
-    public function mutateData(array $data): array
+    public function beforeCreateOrUpdateMutation(array $data): array
     {
         $templateData = [];
 
@@ -19,7 +19,12 @@ trait MutateDataBeforeTrait
             }
         }
 
-        $data['content'] = $templateData;
+        foreach ($templateData as $name => $value) {
+            $this->record->contents()->updateOrCreate(
+                ['name' => $name],
+                ['value' => $value,]
+            );
+        }
 
         return $data;
     }
