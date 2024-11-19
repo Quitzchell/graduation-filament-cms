@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Interface\UrlableContract;
+use App\Models\Interfaces\HasContent;
+use App\Models\Interfaces\HasUrl;
+use App\Models\Traits\ProvidesContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Page extends Model implements UrlableContract
+class Page extends Model implements HasUrl, HasContent
 {
+    use ProvidesContent;
+
     protected $table = 'pages';
 
     protected $fillable = [
@@ -27,15 +31,6 @@ class Page extends Model implements UrlableContract
     public function menus(): BelongsToMany
     {
         return $this->belongsToMany(Menu::class);
-    }
-
-    public function content(string $name): string|array|null
-    {
-        if (array_key_exists($name, $this->content)) {
-            return $this->content[$name];
-        }
-
-        return null;
     }
 
     /* Urlable */

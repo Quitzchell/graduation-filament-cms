@@ -3,13 +3,15 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateDataBeforeTrait;
+use App\Filament\Resources\Traits\MutateDataBeforeCreateOrUpdateTrait;
+use App\Filament\Resources\Traits\MutateDataBeforeFillTrait;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    use MutateDataBeforeTrait;
+    use MutateDataBeforeCreateOrUpdateTrait;
+    use mutateDataBeforeFillTrait;
 
     protected static string $resource = PageResource::class;
 
@@ -22,17 +24,11 @@ class EditPage extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        if ($data['content']) {
-            foreach ($data['content'] as $key => $templateData) {
-                $data[$key] = $templateData;
-            }
-        }
-
-        return $data;
+        return $this->beforeFillMutation($data);
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        return $this->mutateData($data);
+        return $this->beforeCreateOrUpdateMutation($data);
     }
 }
