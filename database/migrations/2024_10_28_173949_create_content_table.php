@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('content', function (Blueprint $table) {
             $table->id();
+            $table->morphs('contentable');
             $table->string('name');
-            $table->string('uri')->unique()->nullable();
-            $table->string('template')->nullable();
+            $table->json('value')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
