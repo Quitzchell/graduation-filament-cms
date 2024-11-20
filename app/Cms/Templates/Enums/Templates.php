@@ -3,11 +3,11 @@
 namespace App\Cms\Templates\Enums;
 
 use App\Cms\Templates\Blog\Blog;
-use App\Cms\Templates\Homepage\Homepage;
+use App\Cms\Templates\Homepage\HomepageSchema;
 
 enum Templates: string
 {
-    case HOMEPAGE = Homepage::class;
+    case HOMEPAGE = HomepageSchema::class;
     case BLOG = Blog::class;
     case REVIEW = 'App\Cms\Templates\Review';
 
