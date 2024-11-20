@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cms\Templates\Interfaces\TemplateContract;
+use App\Cms\Templates\Interfaces\HasTemplateSchema;
 use App\Models\Page;
 
 class ContentController
@@ -19,7 +19,7 @@ class ContentController
         }
 
         $template = new $page->template;
-        if ($template instanceof TemplateContract) {
+        if ($template instanceof HasTemplateSchema) {
             $renderer = $template->getRenderer();
 
             return $renderer->execute($page);
