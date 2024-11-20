@@ -13,11 +13,11 @@ class Content extends Model
         'contentable_type',
         'contentable_id',
         'name',
-        'value'
+        'value',
     ];
 
     protected $casts = [
-        'value' => 'array'
+        'value' => 'array',
     ];
 
     public function contentable(): MorphTo
