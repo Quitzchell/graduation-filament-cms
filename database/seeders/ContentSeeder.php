@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Cms\Templates\Blog\Blog;
-use App\Cms\Templates\Homepage\Homepage;
+use App\Cms\Templates\Homepage\HomepageSchema;
 use App\Models\Page;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +18,7 @@ class ContentSeeder extends Seeder
             [
                 'name' => 'Home',
                 'uri' => 'home',
-                'template' => Homepage::class,
+                'template' => HomepageSchema::class,
                 'content' => [
                     'blocks' => [
                         [
