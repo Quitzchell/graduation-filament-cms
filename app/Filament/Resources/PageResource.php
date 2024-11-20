@@ -31,7 +31,7 @@ class PageResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(static::createSlug()),
+                        ->afterStateUpdated(static::createSlug('uri')),
 
                     Forms\Components\TextInput::make('uri')
                         ->label('Page uri')

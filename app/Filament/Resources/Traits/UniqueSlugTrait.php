@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources\Traits;
 
+use Closure;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
 trait UniqueSlugTrait
 {
-    public static function createSlug(): \Closure
+    public static function createSlug(string $slugFieldName): Closure
     {
-        return function (Get $get, Set $set, $record, $model, ?string $old, ?string $state) {
-            if (($get('uri') ?? '') !== Str::slug($old)) {
+        return function (Get $get, Set $set, $record, $model, ?string $old, ?string $state) use ($slugFieldName) {
+            if (($get($slugFieldName) ?? '') !== Str::slug($old)) {
                 return;
             }
 
@@ -21,12 +22,12 @@ trait UniqueSlugTrait
 
             // Check and ensure slug uniqueness
             $counter = 1;
-            while ($model::query()->where('uri', $slug)->where('id', '<>', $record?->id)->exists()) {
+            while ($model::query()->where($slugFieldName, $slug)->where('id', '<>', $record?->id)->exists()) {
                 $slug = "{$baseSlug}-{$counter}";
                 $counter++;
             }
 
-            $set('uri', $slug);
+            $set($slugFieldName, $slug);
         };
     }
 }
