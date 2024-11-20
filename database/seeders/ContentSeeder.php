@@ -64,11 +64,11 @@ class ContentSeeder extends Seeder
                 'uri' => 'blog',
                 'template' => Blog::class,
                 'content' => [
-                    "blocks" => [],
-                    "header_image" => "napoleon-reading.jpg",
-                    "header_title" => "Entries"
-                ]
-            ]
+                    'blocks' => [],
+                    'header_image' => 'napoleon-reading.jpg',
+                    'header_title' => 'Entries',
+                ],
+            ],
         ];
 
         foreach ($pages as $page) {

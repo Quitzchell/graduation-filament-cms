@@ -38,10 +38,9 @@ class MenuResource extends Resource
                                 ->required()
                                 ->reactive(),
 
-
                             Repeater::make('children')
                                 ->label('Submenu items')
-                                ->hidden(fn(Get $get): bool => empty($get('page_id')))
+                                ->hidden(fn (Get $get): bool => empty($get('page_id')))
                                 ->reactive()
                                 ->simple(
                                     Select::make('child_id')

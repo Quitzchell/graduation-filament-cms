@@ -28,12 +28,13 @@ class Blog implements HasTemplateSchema
                 ->preserveFilenames()
                 ->required(),
 
-            Builder::make('blocks')->schema([
-                CallToAction::getBlock(),
-                Image::getBlock(),
-                Map::getBlock(),
-                Paragraph::getBlock(),
-            ]),
+            Builder::make('blocks')
+                ->schema([
+                    CallToAction::getBlock(),
+                    Image::getBlock(),
+                    Map::getBlock(),
+                    Paragraph::getBlock(),
+                ]),
         ];
     }
 

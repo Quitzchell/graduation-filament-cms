@@ -8,7 +8,7 @@ use App\Models\Traits\ProvidesContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Page extends Model implements HasUrl, HasContent
+class Page extends Model implements HasContent, HasUrl
 {
     use ProvidesContent;
 
