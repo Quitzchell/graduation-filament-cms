@@ -2,7 +2,7 @@
 
 namespace App\Cms\Templates\Interfaces;
 
-interface HasTemplateSchema
+interface HasFormSchema
 {
     public static function getForm(): array;
 }

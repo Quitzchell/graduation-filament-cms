@@ -30,11 +30,11 @@ class Paragraph implements BlockContract
             ]);
     }
 
-    public static function resolve(array $data)
+    public static function resolve(array $blockData): array
     {
         return [
-            'title' => $data['title'],
-            'text' => $data['text'],
+            'title' => $blockData['title'],
+            'text' => $blockData['text'],
         ];
     }
 }

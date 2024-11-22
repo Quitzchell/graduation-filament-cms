@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Cms\Templates\Blog\Blog;
-use App\Cms\Templates\Homepage\Homepage;
+use App\Cms\Templates\Blog;
+use App\Cms\Templates\Homepage;
 use App\Models\Page;
 use Illuminate\Database\Seeder;
 

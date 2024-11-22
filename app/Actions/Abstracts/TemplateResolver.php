@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Cms\Actions;
+namespace App\Actions\Abstracts;
 
+use App\Actions\Blocks\BlockResolver;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
 

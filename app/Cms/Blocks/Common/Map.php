@@ -67,12 +67,12 @@ class Map implements BlockContract
             ]);
     }
 
-    public static function resolve(array $block): array
+    public static function resolve(array $blockData): array
     {
         return [
-            'title' => $block['title'],
-            'text' => $block['text'],
-            'location' => implode(',', [$block['location']['lat'], $block['location']['lng']]),
+            'title' => $blockData['title'],
+            'text' => $blockData['text'],
+            'location' => implode(',', [$blockData['location']['lat'], $blockData['location']['lng']]),
             'mapKey' => config('services.google_maps_key'),
         ];
     }
