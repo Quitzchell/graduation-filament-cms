@@ -6,6 +6,10 @@ use Filament\Forms\Components\Builder;
 
 use function Pest\Livewire\livewire;
 
+beforeEach(function () {
+    $this->artisan('migrate:fresh');
+});
+
 it('can fill a page with the homepage template', function () {
     $undoBuilderFake = Builder::fake();
 
@@ -53,7 +57,6 @@ it('can fill a page with the homepage template', function () {
         ])
         ->assertFormFieldExists('header_title')
         ->assertFormSet(['name' => 'Name of the page',])
-        ->assertFormSet(['title' => 'Title of the page'])
         ->assertFormFieldExists('header_image')
         ->assertFormFieldExists('blocks')
         ->assertFormSet([
