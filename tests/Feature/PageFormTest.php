@@ -6,7 +6,7 @@ use Filament\Forms\Components\Builder;
 use function Pest\Livewire\livewire;
 
 
-it('can load homepage template', function () {
+it('can fill a page with the homepage template', function () {
     $undoBuilderFake = Builder::fake();
 
     livewire(CreatePage::class)
