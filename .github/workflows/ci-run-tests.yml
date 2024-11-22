@@ -2,8 +2,6 @@ name: 'ci: Run Tests'
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - main
   pull_request:

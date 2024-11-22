@@ -2,8 +2,6 @@ name: 'ci: Static Analysis'
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - main
   pull_request:
