@@ -2,8 +2,6 @@ name: 'ci: Laravel Pint'
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - main
   pull_request:
