@@ -53,6 +53,7 @@ it('can fill a page with the homepage template', function () {
         ])
         ->assertFormFieldExists('header_title')
         ->assertFormSet(['name' => 'Name of the page',])
+        ->assertFormSet(['title' => 'Title of the page'])
         ->assertFormFieldExists('header_image')
         ->assertFormFieldExists('blocks')
         ->assertFormSet([
