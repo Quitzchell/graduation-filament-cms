@@ -10,8 +10,8 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    use MutateDateBeforeSaveTrait;
     use mutateDataBeforeFillTrait;
+    use MutateDateBeforeSaveTrait;
 
     protected static string $resource = PageResource::class;
 

@@ -11,10 +11,11 @@ trait MutateDataBeforeCreateTrait
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if (!empty($data['template'])) {
+        if (! empty($data['template'])) {
             $templateFields = TemplateFactory::getTemplateFields($data['template']);
             $this->cmsContent = Arr::only($data, $templateFields);
         }
+
         return Arr::except($data, $templateFields ?? []);
     }
 

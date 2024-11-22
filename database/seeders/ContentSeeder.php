@@ -61,7 +61,7 @@ class ContentSeeder extends Seeder
                             ],
                         ],
                         'type' => 'common\\map',
-                    ]
+                    ],
                 ],
             ],
 

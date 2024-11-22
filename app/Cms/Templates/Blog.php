@@ -44,8 +44,9 @@ class Blog implements HasFormSchema, HasTemplateRenderer
     public function getRenderer(...$segments): TemplateResolver|ObjectResolver
     {
         if (count($segments) > 1) {
-            return (new BlogPost())->getRenderer();
-        };
+            return (new BlogPost)->getRenderer();
+        }
+
         return new ResolveBlogOverviewAction(new BlockResolver);
     }
 }

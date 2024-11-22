@@ -68,7 +68,7 @@ class BlogPostResource extends Resource
                 ]),
 
                 Forms\Components\Hidden::make('template')
-                    ->afterStateHydrated(fn(Set $set) => $set('template', BlogPostSchema::class)),
+                    ->afterStateHydrated(fn (Set $set) => $set('template', BlogPostSchema::class)),
                 Forms\Components\Section::make('Content')
                     ->schema(BlogPostSchema::getForm()),
             ]);

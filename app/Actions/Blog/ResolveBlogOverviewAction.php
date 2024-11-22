@@ -20,9 +20,9 @@ class ResolveBlogOverviewAction extends TemplateResolver
             'headerTitle' => $page->content('header_title'),
         ];
 
-                $blogPostItems = BlogPost::where('published', true)->get()->take(10)->map(function (BlogPost $blogPost) {
-                    return BlogPostDTO::make($blogPost);
-                });
+        $blogPostItems = BlogPost::where('published', true)->get()->take(10)->map(function (BlogPost $blogPost) {
+            return BlogPostDTO::make($blogPost);
+        });
 
         return $this->render($page, [
             'headerItems' => $headerItems,
