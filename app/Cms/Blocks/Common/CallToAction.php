@@ -48,15 +48,15 @@ class CallToAction implements BlockContract
             ]);
     }
 
-    public static function resolve(array $data)
+    public static function resolve(array $blockData): array
     {
-        [$classname, $id] = explode(':', $data['urlable_id']);
+        [$classname, $id] = explode(':', $blockData['urlable_id']);
 
         return [
-            'title' => $data['title'],
-            'text' => $data['text'],
+            'title' => $blockData['title'],
+            'text' => $blockData['text'],
             'buttonUrl' => $classname::find($id)->uri(),
-            'buttonText' => $data['button_text'],
+            'buttonText' => $blockData['button_text'],
         ];
     }
 }

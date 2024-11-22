@@ -8,5 +8,5 @@ interface BlockContract
 {
     public static function getBlock(): Block;
 
-    public static function resolve(array $block);
+    public static function resolve(array $blockData): array;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cms\Actions;
+namespace App\Actions\Blocks;
 
 use App\Cms\Blocks\DTO\BlockData;
 use App\Cms\Blocks\Interfaces\BlockContract;
@@ -24,12 +24,5 @@ class BlockResolver
         $resolvedData = $blockClass::resolve($block['data']);
 
         return new BlockData($blockName, '', $resolvedData);
-    }
-
-    private function getBlockClass(string $blockType): string
-    {
-        $blockName = implode('\\', array_map('ucfirst', explode('\\', $blockType)));
-
-        return 'App\\CMS\\Blocks\\'.$blockName;
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Cms\Templates\Homepage;
+namespace App\Cms\Templates;
 
-use App\Cms\Actions\BlockResolver;
-use App\Cms\Actions\TemplateResolver;
+use App\Actions\Abstracts\TemplateResolver;
+use App\Actions\Blocks\BlockResolver;
+use App\Actions\Homepage\ResolveHomepageAction;
 use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
 use App\Cms\Blocks\Common\Paragraph;
-use App\Cms\Templates\Homepage\Actions\ResolveHomepageAction;
-use App\Cms\Templates\Interfaces\HasTemplateSchema;
+use App\Cms\Templates\Interfaces\HasFormSchema;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 
-class HomepageSchema implements HasTemplateSchema
+class Homepage implements HasFormSchema
 {
     public static function getForm(): array
     {
@@ -34,7 +34,7 @@ class HomepageSchema implements HasTemplateSchema
                     Image::getBlock(),
                     Map::getBlock(),
                     Paragraph::getBlock(),
-                ]),
+                ])
         ];
     }
 
