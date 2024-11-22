@@ -34,7 +34,7 @@ class Homepage implements HasFormSchema
                     Image::getBlock(),
                     Map::getBlock(),
                     Paragraph::getBlock(),
-                ])
+                ]),
         ];
     }
 

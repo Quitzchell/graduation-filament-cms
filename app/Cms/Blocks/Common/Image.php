@@ -6,7 +6,6 @@ use App\Cms\Blocks\Interfaces\BlockContract;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 
-
 class Image implements BlockContract
 {
     public static function getBlock(): Block
@@ -17,14 +16,14 @@ class Image implements BlockContract
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
-                    ->preserveFilenames()
+                    ->preserveFilenames(),
             ]);
     }
 
     public static function resolve(array $blockData): array
     {
         return [
-            'image' => asset('storage/'.$blockData['image'])
+            'image' => asset('storage/'.$blockData['image']),
         ];
     }
 }

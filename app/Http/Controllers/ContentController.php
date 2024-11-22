@@ -18,7 +18,7 @@ class ContentController
 
         $page = Page::where('uri', $segments[0])->first();
 
-        if (!$page) {
+        if (! $page) {
             abort(404);
         }
 
@@ -33,4 +33,3 @@ class ContentController
         abort(404);
     }
 }
-

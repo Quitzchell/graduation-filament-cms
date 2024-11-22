@@ -12,7 +12,7 @@ use App\Cms\Blocks\Common\Paragraph;
 use App\Cms\Templates\Interfaces\HasFormSchema;
 use Filament\Forms\Components\Builder;
 
-class BlogPost implements HasObjectRenderer, HasFormSchema
+class BlogPost implements HasFormSchema, HasObjectRenderer
 {
     public static function getForm(): array
     {
@@ -23,7 +23,7 @@ class BlogPost implements HasObjectRenderer, HasFormSchema
                     Image::getBlock(),
                     Map::getBlock(),
                     Paragraph::getBlock(),
-                ])
+                ]),
         ];
     }
 

@@ -12,7 +12,7 @@ class RenderBlogDetailAction extends ObjectResolver
     {
         $blogPost = BlogPost::query()->where('id', $identifier)->firstOrFail();
 
-        if (!$blogPost instanceof BlogPost) {
+        if (! $blogPost instanceof BlogPost) {
             abort(404);
         }
 
