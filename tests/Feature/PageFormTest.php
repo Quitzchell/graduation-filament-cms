@@ -6,7 +6,6 @@ use Filament\Forms\Components\Builder;
 
 use function Pest\Livewire\livewire;
 
-
 it('can fill a page with the homepage template', function () {
     $undoBuilderFake = Builder::fake();
 
@@ -22,7 +21,7 @@ it('can fill a page with the homepage template', function () {
                     'data' => [
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
-                    ]
+                    ],
                 ],
                 [
                     'type' => 'common\\map',
@@ -33,7 +32,7 @@ it('can fill a page with the homepage template', function () {
                             'lat' => 52.337801,
                             'lng' => 4.8339572,
                             'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam'
+                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
                         ],
                         'location' => [
                             'lat' => 52.337801,
@@ -74,7 +73,7 @@ it('can fill a page with the homepage template', function () {
                             'lat' => 52.337801,
                             'lng' => 4.8339572,
                             'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam'
+                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
                         ],
                         'location' => [
                             'lat' => 52.337801,
