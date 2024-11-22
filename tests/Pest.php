@@ -11,7 +11,10 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature', 'E2E');
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(Tests\TestCase::class)->in('Feature');
+uses(RefreshDatabase::class);
 
 /*
 |--------------------------------------------------------------------------

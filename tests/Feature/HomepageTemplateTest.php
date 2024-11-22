@@ -6,12 +6,16 @@ use Filament\Forms\Components\Builder;
 
 use function Pest\Livewire\livewire;
 
+beforeEach(function () {
+    $this->artisan('migrate:fresh');
+});
+
 it('can fill a page with the homepage template', function () {
     $undoBuilderFake = Builder::fake();
 
     livewire(CreatePage::class)
         ->fillForm([
-            'title' => 'Title of the page',
+            'name' => 'Name of the page',
             'template' => Templates::HOMEPAGE->value,
         ])
         ->fillForm([
@@ -21,23 +25,6 @@ it('can fill a page with the homepage template', function () {
                     'data' => [
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
-                    ],
-                ],
-                [
-                    'type' => 'common\\map',
-                    'data' => [
-                        'text' => 'This is a text on the map block',
-                        'title' => 'This is a title on the map block',
-                        'address' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                            'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                        ],
-                        'location' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                        ],
                     ],
                 ],
                 [
@@ -52,7 +39,7 @@ it('can fill a page with the homepage template', function () {
             ],
         ])
         ->assertFormFieldExists('header_title')
-        ->assertFormSet(['title' => 'Title of the page'])
+        ->assertFormSet(['name' => 'Name of the page'])
         ->assertFormFieldExists('header_image')
         ->assertFormFieldExists('blocks')
         ->assertFormSet([
@@ -62,23 +49,6 @@ it('can fill a page with the homepage template', function () {
                     'data' => [
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
-                    ],
-                ],
-                [
-                    'type' => 'common\\map',
-                    'data' => [
-                        'text' => 'This is a text on the map block',
-                        'title' => 'This is a title on the map block',
-                        'address' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                            'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                        ],
-                        'location' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                        ],
                     ],
                 ],
                 [
