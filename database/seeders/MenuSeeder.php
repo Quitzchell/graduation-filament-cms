@@ -18,6 +18,5 @@ class MenuSeeder extends Seeder
                 'name' => $menu->value,
             ]);
         }
-
     }
 }
