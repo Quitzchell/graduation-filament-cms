@@ -43,13 +43,14 @@ class PageResource extends Resource
                         ->required()
                         ->live(),
 
-                    Forms\Components\Section::make()->schema(function (Get $get) {
-                        if ($get('template')) {
-                            return TemplateFactory::loadTemplateSchema($get('template'));
-                        }
+                    Forms\Components\Section::make()
+                        ->schema(function (Get $get) {
+                            if ($get('template')) {
+                                return TemplateFactory::loadTemplateSchema($get('template'));
+                            }
 
-                        return [];
-                    }),
+                            return [];
+                        }),
                 ]),
             ]);
     }
@@ -61,7 +62,7 @@ class PageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Page name'),
                 Tables\Columns\TextColumn::make('template')
-                    ->formatStateUsing(fn ($state) => class_basename($state)),
+                    ->formatStateUsing(fn($state) => class_basename($state)),
             ])
             ->filters([
                 //
