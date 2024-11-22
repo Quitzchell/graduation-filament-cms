@@ -8,12 +8,9 @@ use App\Models\DTO\BlogPostDTO;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
 
-//use App\Models\BlogPost;
-//use App\Models\DTO\BlogPostDTO;
-
-class ResolveBlogOverviewAction extends TemplateResolver
+class RenderBlogOverviewAction extends TemplateResolver
 {
-    public function execute(Page $page, ...$params): JsonResponse
+    public function execute(Page $page): JsonResponse
     {
         $headerItems = [
             'headerImage' => asset('storage/'.$page->content('header_image')),

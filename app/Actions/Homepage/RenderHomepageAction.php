@@ -6,7 +6,7 @@ use App\Actions\Abstracts\TemplateResolver;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
 
-class ResolveHomepageAction extends TemplateResolver
+class RenderHomepageAction extends TemplateResolver
 {
     public function execute(Page $page, ...$params): JsonResponse
     {

@@ -4,21 +4,22 @@ namespace App\Actions\Blog;
 
 use App\Actions\Abstracts\ObjectResolver;
 use App\Models\BlogPost;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 
 class RenderBlogDetailAction extends ObjectResolver
 {
-    public function execute(int|string $identifier, ...$params): JsonResponse
+    public function execute(array $segments): JsonResponse
     {
-        $blogPost = BlogPost::query()->where('id', $identifier)->firstOrFail();
-
-        if (! $blogPost instanceof BlogPost) {
-            abort(404);
+        try {
+            $blogPost = BlogPost::query()->where('slug', $segments[1])->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            abort(404, 'Blog post not found');
         }
 
         return $this->render(BlogPost::class, [
-            'title' => $blogPost->content('title'),
-            'image' => $blogPost->image('image'),
+            'title' => $blogPost->title,
+            'image' => asset('storage/'.$blogPost->image),
             'blocks' => $this->resolver->execute($blogPost->content('blocks')),
         ]);
     }

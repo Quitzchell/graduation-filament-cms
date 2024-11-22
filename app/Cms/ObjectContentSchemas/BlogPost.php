@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Models\Schemas;
+namespace App\Cms\ObjectContentSchemas;
 
-use App\Actions\Abstracts\ObjectResolver;
-use App\Actions\Blocks\BlockResolver;
-use App\Actions\Blog\RenderBlogDetailAction;
 use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
@@ -12,7 +9,7 @@ use App\Cms\Blocks\Common\Paragraph;
 use App\Cms\Templates\Interfaces\HasFormSchema;
 use Filament\Forms\Components\Builder;
 
-class BlogPost implements HasFormSchema, HasObjectRenderer
+class BlogPost implements HasFormSchema
 {
     public static function getForm(): array
     {
@@ -25,10 +22,5 @@ class BlogPost implements HasFormSchema, HasObjectRenderer
                     Paragraph::getBlock(),
                 ]),
         ];
-    }
-
-    public function getRenderer(): ObjectResolver
-    {
-        return new RenderBlogDetailAction(new BlockResolver);
     }
 }

@@ -2,9 +2,6 @@
 
 namespace App\Cms\Templates;
 
-use App\Actions\Abstracts\TemplateResolver;
-use App\Actions\Blocks\BlockResolver;
-use App\Actions\Homepage\ResolveHomepageAction;
 use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
@@ -36,10 +33,5 @@ class Homepage implements HasFormSchema
                     Paragraph::getBlock(),
                 ]),
         ];
-    }
-
-    public function getRenderer(): TemplateResolver
-    {
-        return new ResolveHomepageAction(new BlockResolver);
     }
 }

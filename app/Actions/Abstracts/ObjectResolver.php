@@ -11,7 +11,7 @@ abstract class ObjectResolver
 {
     public function __construct(protected readonly BlockResolver $resolver) {}
 
-    abstract public function execute(string|int $identifier, ...$params): JsonResponse;
+    abstract public function execute(array $segments): JsonResponse;
 
     protected function render($class, array $data = []): JsonResponse
     {
