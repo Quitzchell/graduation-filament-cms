@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Interface\UrlableContract;
+use App\Models\Interfaces\HasUrl;
 use Illuminate\Support\Facades\File;
 
 if (! function_exists('getUrlableModels')) {
@@ -10,7 +10,7 @@ if (! function_exists('getUrlableModels')) {
         return collect(File::allFiles(app_path('Models')))
             ->map(fn ($file) => 'App\\Models\\'.$file->getBasename('.php'))
             ->filter(fn ($className) => class_exists($className)
-                && (new ReflectionClass($className))->implementsInterface(UrlableContract::class))
+                && (new ReflectionClass($className))->implementsInterface(HasUrl::class))
             ->values()
             ->all();
     }

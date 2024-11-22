@@ -1,6 +1,6 @@
 <?php
 
-use App\Cms\Actions\RenderNavigation;
+use App\Actions\Navigation\RenderNavigation;
 use App\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

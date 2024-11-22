@@ -3,17 +3,12 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
-use App\Filament\Resources\Traits\MutateDataBeforeTrait;
+use App\Filament\Resources\Traits\MutateDataBeforeCreateTrait;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreatePage extends CreateRecord
 {
-    use MutateDataBeforeTrait;
+    use MutateDataBeforeCreateTrait;
 
     protected static string $resource = PageResource::class;
-
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        return $this->mutateData($data);
-    }
 }

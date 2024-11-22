@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Cms\Templates\Blog\Actions;
+namespace App\Actions\Homepage;
 
-use App\Cms\Actions\TemplateResolver;
-//use App\Models\BlogPost;
-//use App\Models\DTO\BlogPostDTO;
+use App\Actions\Abstracts\TemplateResolver;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
 
-class ResolveBlogAction extends TemplateResolver
+class RenderHomepageAction extends TemplateResolver
 {
     public function execute(Page $page, ...$params): JsonResponse
     {
@@ -17,9 +15,7 @@ class ResolveBlogAction extends TemplateResolver
             'headerTitle' => $page->content('header_title'),
         ];
 
-        //        $blogPostItems = BlogPost::where('published', true)->get()->take(10)->map(function (BlogPost $blogPost) {
-        //            return BlogPostDTO::make($blogPost);
-        //        });
+        $this->resolver->execute($page->content('blocks'));
 
         return $this->render($page, [
             'headerItems' => $headerItems,

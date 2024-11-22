@@ -38,10 +38,9 @@ class MenuResource extends Resource
                                 ->required()
                                 ->reactive(),
 
-
                             Repeater::make('children')
-                                ->label('Submenu items')
-                                ->hidden(fn(Get $get): bool => empty($get('page_id')))
+                                ->label('Submenu Items')
+                                ->hidden(fn (Get $get): bool => empty($get('page_id')))
                                 ->reactive()
                                 ->simple(
                                     Select::make('child_id')
@@ -51,15 +50,16 @@ class MenuResource extends Resource
                                 ->afterStateHydrated(function ($record, $get, Forms\Set $set) {
                                     if ($record) {
                                         $recordKey = $record->getKey();
-                                        $set("../../menuPages.record-$recordKey.children", array_map(function ($child) {
-                                            return ['child_id' => $child];
-                                        }, $record->children));
+                                        $set(
+                                            "../../menuPages.record-{$recordKey}.children",
+                                            array_map(fn ($child) => ['child_id' => $child], $record->children)
+                                        );
                                     }
                                 }),
                         ])
                         ->mutateRelationshipDataBeforeSaveUsing(function ($data, $record) {
                             $record->page_id = $data['page_id'];
-                            $record->children = $data['children'] ?? [];
+                            $record->children = empty($data['children']) ? $data['children'] : [];
 
                             $record->save();
                         }),

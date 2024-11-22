@@ -14,14 +14,16 @@ class Image implements BlockContract
             ->label('Image')
             ->schema([
                 FileUpload::make('image')
-                    ->label('image')
+                    ->label('Image')
                     ->image()
                     ->preserveFilenames(),
             ]);
     }
 
-    public static function resolve(array $block)
+    public static function resolve(array $blockData): array
     {
-        // TODO: Implement resolve() method.
+        return [
+            'image' => asset('storage/'.$blockData['image']),
+        ];
     }
 }

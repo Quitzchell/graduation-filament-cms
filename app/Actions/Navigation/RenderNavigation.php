@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Cms\Actions;
+namespace App\Actions\Navigation;
 
-use App\Cms\Templates\Homepage\Homepage;
+use App\Cms\Templates\Homepage;
 use App\Models\Menu;
 use Illuminate\Http\JsonResponse;
 
