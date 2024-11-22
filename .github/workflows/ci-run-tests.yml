@@ -23,7 +23,7 @@ jobs:
           coverage: none
 
       - name: Run composer install
-        run: composer install -n --prefer-dist --no-dev --no-scripts
+        run: composer install -n --prefer-dist
 
       - name: Prepare Laravel Application
         run: |
