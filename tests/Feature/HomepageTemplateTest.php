@@ -28,23 +28,6 @@ it('can fill a page with the homepage template', function () {
                     ],
                 ],
                 [
-                    'type' => 'common\\map',
-                    'data' => [
-                        'text' => 'This is a text on the map block',
-                        'title' => 'This is a title on the map block',
-                        'address' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                            'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                        ],
-                        'location' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                        ],
-                    ],
-                ],
-                [
                     'data' => [
                         'text' => 'Text on the Call to Action block',
                         'title' => 'Title on the Call to Action block',
@@ -66,23 +49,6 @@ it('can fill a page with the homepage template', function () {
                     'data' => [
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
-                    ],
-                ],
-                [
-                    'type' => 'common\\map',
-                    'data' => [
-                        'text' => 'This is a text on the map block',
-                        'title' => 'This is a title on the map block',
-                        'address' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                            'formatted' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                            'formatted_address' => 'Claude Debussylaan 34, 15th Floor, 1082 MD Amsterdam',
-                        ],
-                        'location' => [
-                            'lat' => 52.337801,
-                            'lng' => 4.8339572,
-                        ],
                     ],
                 ],
                 [
