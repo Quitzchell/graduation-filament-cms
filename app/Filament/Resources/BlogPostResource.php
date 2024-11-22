@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
+use App\Cms\ObjectContentSchemas\BlogPost as BlogPostSchema;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\BlogPost;
-use App\Models\Schemas\BlogPost as BlogPostSchema;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
