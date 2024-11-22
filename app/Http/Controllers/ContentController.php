@@ -68,6 +68,7 @@ class ContentController
         return $detailAction->execute($segments);
     }
 
+    // todo: implement when Review is ready
 //    public function getReview(Page $page, Request $request, array $segments): JsonResponse
 //    {
 //        return;
