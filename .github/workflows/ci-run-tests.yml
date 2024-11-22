@@ -26,8 +26,7 @@ jobs:
         run: composer install -n --prefer-dist
 
       - name: Prepare Laravel Application
-        run: |
-          echo "APP_KEY=$(php artisan key:generate --show)" > .env
+        run: echo "APP_KEY=$(php artisan key:generate --show)" > .env
 
 
       - name: Run tests
