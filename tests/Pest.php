@@ -11,7 +11,7 @@
 |
 */
 
- uses(Tests\TestCase::class)->in('Feature', 'E2E');
+uses(Tests\TestCase::class)->in('Feature', 'E2E');
 
 /*
 |--------------------------------------------------------------------------
