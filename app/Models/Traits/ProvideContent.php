@@ -5,7 +5,7 @@ namespace App\Models\Traits;
 use App\Models\Content;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait ProvidesContent
+trait ProvideContent
 {
     public function contents(): MorphMany
     {

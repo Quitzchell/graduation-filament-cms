@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BlogPostResource extends Resource
@@ -78,7 +79,13 @@ class BlogPostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->label('Title')
+                    ->sortable(),
+                TextColumn::make('published_at')
+                    ->label('Published at')
+                    ->date('d-m-Y')
+                    ->sortable(),
             ])
             ->filters([
                 //

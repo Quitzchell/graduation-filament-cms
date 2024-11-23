@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Interfaces\HasContent;
-use App\Models\Traits\ProvidesContent;
+use App\Models\Traits\ProvideContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BlogPost extends Model implements HasContent
 {
-    use ProvidesContent;
+    use ProvideContent;
 
     protected $table = 'blog_posts';
 
