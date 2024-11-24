@@ -25,11 +25,11 @@ class RenderReviewDetailAction extends ObjectResolver
 
         $reviewableDTO = match (true) {
             $reviewable instanceof Movie => MovieDTO::make($reviewable),
-            //                    $reviewable instanceof Book => BookDTO::from($reviewable),
+            // $reviewable instanceof Book => BookDTO::from($reviewable),
             default => throw new InvalidArgumentException('Unknown reviewable type'),
         };
 
-        return $this->render(BlogPost::class, [
+        return $this->render(Review::class, [
             'title' => $review->title,
             'image' => asset('storage/'.$review->image),
             'reviewItem' => $reviewableDTO,
