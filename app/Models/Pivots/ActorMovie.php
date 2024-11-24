@@ -13,6 +13,10 @@ class ActorMovie extends Pivot
 
     public $timestamps = false;
 
+    protected $casts = [
+        'roles' => 'array',
+    ];
+
     /* Relations */
     public function actor(): BelongsTo
     {

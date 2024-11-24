@@ -6,6 +6,7 @@ use App\Filament\Resources\MovieResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Movie;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -50,14 +51,24 @@ class MovieResource extends Resource
                 ]),
 
                 Forms\Components\Section::make()->schema([
-                    Forms\Components\Select::make('actors')
+                    Repeater::make('actorMovies')
                         ->label('Actors')
-                        ->multiple()
-                        ->relationship('actors', 'surname')
-                        ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
-                        ->preload(10)
-                        ->createOptionForm(ActorResource::externalFormFields())
-                        ->editOptionForm(ActorResource::externalFormFields()),
+                        ->relationship()
+                        ->schema([
+                            Forms\Components\Select::make('actor_id')
+                                ->label('Actor')
+                                ->relationship('actor', 'surname')
+                                ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
+                                ->preload(10)
+                                ->createOptionForm(ActorResource::externalFormFields())
+                                ->searchable()
+                                ->distinct(),
+                            Forms\Components\TagsInput::make('roles')
+                                ->label('Roles')
+                                ->placeholder('New roles')
+                                ->hint('The roles of the actor in the movie')
+                                ->required(),
+                        ]),
                 ]),
 
                 Forms\Components\Section::make()->schema([

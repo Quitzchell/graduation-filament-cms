@@ -8,6 +8,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -45,14 +46,17 @@ class ActorResource extends Resource
 
                 Section::make()->schema([
                     Repeater::make('actorMovies')
+                        ->label('Movies')
                         ->relationship()
                         ->schema([
                             Select::make('movie_id')
                                 ->label('Movie')
                                 ->relationship('movie', 'title')
                                 ->pivotData(fn (Get $get) => ['role' => $get('role')]),
-                            TextInput::make('role')
-                                ->label('Role')
+                            TagsInput::make('roles')
+                                ->label('Roles')
+                                ->placeholder('New roles')
+                                ->hint('The roles of the actor in the movie')
                                 ->required(),
                         ]),
                 ]),
@@ -73,6 +77,10 @@ class ActorResource extends Resource
             DatePicker::make('date_of_birth')
                 ->label('Date of Birth')
                 ->displayFormat('d-m-Y')
+                ->required(),
+            TagsInput::make('role')
+                ->label('Role')
+                ->helperText('The role of the actor in the relationship.')
                 ->required(),
         ];
     }
