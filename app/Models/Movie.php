@@ -15,6 +15,7 @@ class Movie extends Model implements HasReview
     protected $table = 'movies';
 
     protected $fillable = [
+        'director_id',
         'title',
         'slug',
         'release_year',
