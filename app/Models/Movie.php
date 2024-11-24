@@ -21,11 +21,6 @@ class Movie extends Model
     ];
 
     /* Relations */
-    public function review(): MorphOne
-    {
-        return $this->morphOne(Review::class, 'reviewable');
-    }
-
     public function actors(): BelongsToMany
     {
         return $this->belongsToMany(Actor::class);
@@ -34,5 +29,15 @@ class Movie extends Model
     public function actorMovies(): HasMany
     {
         return $this->hasMany(ActorMovie::class);
+    }
+
+    public function director(): BelongsToMany
+    {
+        return $this->belongsToMany(Director::class);
+    }
+
+    public function review(): MorphOne
+    {
+        return $this->morphOne(Review::class, 'reviewable');
     }
 }
