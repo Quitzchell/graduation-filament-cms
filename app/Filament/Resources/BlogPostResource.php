@@ -63,7 +63,7 @@ class BlogPostResource extends Resource
                         ->displayFormat('d-m-Y')
                         ->required(),
 
-                    Forms\Components\ToggleButtons::make('Published')
+                    Forms\Components\ToggleButtons::make('published')
                         ->label('Published')
                         ->boolean()
                         ->inline()

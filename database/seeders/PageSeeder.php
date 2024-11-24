@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Cms\Templates\Blog;
 use App\Cms\Templates\Homepage;
 use App\Models\Page;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class PageSeeder extends Seeder
@@ -24,6 +25,11 @@ class PageSeeder extends Seeder
                 'name' => 'Blog',
                 'uri' => 'blog',
                 'template' => Blog::class,
+            ],
+            [
+                'name' => 'Review',
+                'uri' => 'Review',
+                'template' => Review::class,
             ],
         ];
 

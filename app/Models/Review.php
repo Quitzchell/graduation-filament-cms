@@ -19,8 +19,12 @@ class Review extends Model implements HasContent
     ];
 
     protected $fillable = [
+        'reviewable_type',
+        'reviewable_id',
         'title',
+        'slug',
         'excerpt',
+        'image',
         'score',
         'published_at',
     ];

@@ -51,6 +51,7 @@ class ActorResource extends Resource
                     Repeater::make('actorMovies')
                         ->label('Movies')
                         ->relationship()
+                        ->defaultItems(0)
                         ->schema([
                             Select::make('movie_id')
                                 ->label('Movie')

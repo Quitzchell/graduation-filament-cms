@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Director extends Model
 {
@@ -19,9 +19,9 @@ class Director extends Model
     ];
 
     /* Relations */
-    public function movies(): BelongsToMany
+    public function movies(): HasMany
     {
-        return $this->belongsToMany(Movie::class);
+        return $this->hasMany(Movie::class);
     }
 
     /* Accessors */

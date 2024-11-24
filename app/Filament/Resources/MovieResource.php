@@ -36,12 +36,6 @@ class MovieResource extends Resource
                 Forms\Components\Section::make()->schema([
                     TextInput::make('title')
                         ->label('Title')
-                        ->required()
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(static::createSlug('slug')),
-
-                    Forms\Components\Hidden::make('slug')
-                        ->unique(ignoreRecord: true)
                         ->required(),
 
                     TextInput::make('release_year')
@@ -67,6 +61,7 @@ class MovieResource extends Resource
                     Repeater::make('actorMovies')
                         ->label('Actors')
                         ->relationship()
+                        ->defaultItems(0)
                         ->schema([
                             Forms\Components\Select::make('actor_id')
                                 ->label('Actor')

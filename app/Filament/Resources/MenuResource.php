@@ -35,6 +35,7 @@ class MenuResource extends Resource
                         ->label('Menu items')
                         ->relationship()
                         ->collapsible()
+                        ->defaultItems(0)
                         ->schema([
                             Select::make('page_id')
                                 ->label('Menu item')

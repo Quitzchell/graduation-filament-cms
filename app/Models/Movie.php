@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\HasReview;
 use App\Models\Pivots\ActorMovie;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-class Movie extends Model
+class Movie extends Model implements HasReview
 {
     protected $table = 'movies';
 
@@ -31,9 +33,9 @@ class Movie extends Model
         return $this->hasMany(ActorMovie::class);
     }
 
-    public function director(): BelongsToMany
+    public function director(): BelongsTo
     {
-        return $this->belongsToMany(Director::class);
+        return $this->belongsTo(Director::class);
     }
 
     public function review(): MorphOne
