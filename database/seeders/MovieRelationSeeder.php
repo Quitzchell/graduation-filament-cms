@@ -11,7 +11,6 @@ use Illuminate\Support\Collection;
 
 class MovieRelationSeeder extends Seeder
 {
-
     private Collection $movies;
 
     /**
@@ -26,7 +25,6 @@ class MovieRelationSeeder extends Seeder
 
     private function seedActorMovieRelations(): void
     {
-
 
         $actors = Actor::all()->keyBy('name');
 
@@ -89,5 +87,4 @@ class MovieRelationSeeder extends Seeder
         $this->movies['Monsieur N.']->update(['director_id' => $directors['Antoine']->getKey()]);
         $this->movies['Waterloo']->update(['director_id' => $directors['Sergey']->getKey()]);
     }
-
 }

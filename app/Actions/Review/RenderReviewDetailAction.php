@@ -3,7 +3,6 @@
 namespace App\Actions\Review;
 
 use App\Actions\Abstracts\ObjectResolver;
-use App\Models\BlogPost;
 use App\Models\DTO\MovieDTO;
 use App\Models\Movie;
 use App\Models\Review;
