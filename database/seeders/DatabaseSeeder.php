@@ -16,9 +16,10 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             PageSeeder::class,
             ContentSeeder::class,
+            MenuPageSeeder::class,
             CategorySeeder::class,
             BlogPostSeeder::class,
-            MenuPageSeeder::class,
+            MovieSeeder::class,
         ]);
     }
 }

@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Interfaces\HasContent;
+use App\Models\Traits\ProvideContent;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+class Review extends Model implements HasContent
+{
+    use ProvideContent;
+
+    protected $table = 'reviews';
+
+    protected $casts = [
+        'published' => 'boolean',
+        'published_at' => 'date',
+    ];
+
+    protected $fillable = [
+        'title',
+        'excerpt',
+        'score',
+        'published_at',
+    ];
+
+    /* Relations */
+    public function reviewable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+}
