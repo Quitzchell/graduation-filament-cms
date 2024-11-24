@@ -8,17 +8,15 @@ use Illuminate\Support\Collection;
 class MovieDTO extends ReviewableDTO
 {
     public function __construct(
-        public ?int         $id,
-        public ?string      $title,
-        public ?int         $releaseYear,
-        public ?string      $description,
-        public ?string      $trailerUrl,
+        public ?int $id,
+        public ?string $title,
+        public ?int $releaseYear,
+        public ?string $description,
+        public ?string $trailerUrl,
         public ?DirectorDTO $director,
-        public Collection   $actors,
-        public string       $type = self::MOVIE
-    )
-    {
-    }
+        public Collection $actors,
+        public string $type = self::MOVIE
+    ) {}
 
     public static function make(Movie $movie): self
     {
@@ -29,9 +27,9 @@ class MovieDTO extends ReviewableDTO
             title: $movie->title,
             releaseYear: $movie->release_year,
             description: $movie->description,
-            trailerUrl: 'https://www.youtube.com/embed/' . $movie->trailer_id,
+            trailerUrl: 'https://www.youtube.com/embed/'.$movie->trailer_id,
             director: $movie->director ? DirectorDTO::make($movie->director) : null,
-            actors: collect($movie->actors)->map(fn($actor) => ActorDTO::make($actor)),
+            actors: collect($movie->actors)->map(fn ($actor) => ActorDTO::make($actor)),
         );
     }
 }

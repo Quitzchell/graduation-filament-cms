@@ -30,7 +30,7 @@ class RenderReviewOverviewAction extends TemplateResolver
 
                 $reviewableDTO = match (true) {
                     $reviewable instanceof Movie => MovieDTO::make($reviewable),
-//                    $reviewable instanceof Book => BookDTO::from($reviewable),
+                    //                    $reviewable instanceof Book => BookDTO::from($reviewable),
                     default => throw new InvalidArgumentException('Unknown reviewable type'),
                 };
 
