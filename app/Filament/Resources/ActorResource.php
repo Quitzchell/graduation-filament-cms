@@ -50,11 +50,11 @@ class ActorResource extends Resource
                             Select::make('movie_id')
                                 ->label('Movie')
                                 ->relationship('movie', 'title')
-                                ->pivotData(fn(Get $get) => ['role' => $get('role')]),
+                                ->pivotData(fn (Get $get) => ['role' => $get('role')]),
                             TextInput::make('role')
                                 ->label('Role')
-                                ->required()
-                        ])
+                                ->required(),
+                        ]),
                 ]),
             ]);
     }
