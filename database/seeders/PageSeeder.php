@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Cms\Templates\Blog;
 use App\Cms\Templates\Homepage;
-use App\Models\Page;
 use App\Cms\Templates\Review;
+use App\Models\Page;
 use Illuminate\Database\Seeder;
 
 class PageSeeder extends Seeder
