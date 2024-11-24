@@ -146,6 +146,19 @@ class ContentSeeder extends Seeder
                     ],
                 ],
             ],
+
+            [
+                'contentable_type' => Page::class,
+                'contentable_id' => 3,
+                'name' => 'header_image',
+                'value' => 'napoleon-reviews.jpg',
+            ],
+            [
+                'contentable_type' => Page::class,
+                'contentable_id' => 3,
+                'name' => 'header_title',
+                'value' => 'Reviews',
+            ],
         ];
 
         foreach ($contents as $content) {
