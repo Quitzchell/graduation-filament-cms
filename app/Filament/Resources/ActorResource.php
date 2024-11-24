@@ -82,10 +82,6 @@ class ActorResource extends Resource
                 ->label('Date of Birth')
                 ->displayFormat('d-m-Y')
                 ->required(),
-            TagsInput::make('role')
-                ->label('Role')
-                ->helperText('The role of the actor in the relationship.')
-                ->required(),
         ];
     }
 
