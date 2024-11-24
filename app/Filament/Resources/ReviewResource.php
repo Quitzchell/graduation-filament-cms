@@ -99,8 +99,6 @@ class ReviewResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Title'),
-                TextColumn::make('reviewable')
-                    ->label('Reviewable')->formatStateUsing(fn ($state) => dd($state)),
             ])
             ->filters([
                 //
