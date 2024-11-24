@@ -20,6 +20,8 @@ class BlogPostResource extends Resource
 {
     use UniqueSlugTrait;
 
+    protected static ?string $navigationGroup = 'Blog';
+
     protected static ?string $model = BlogPost::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

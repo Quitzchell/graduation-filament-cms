@@ -7,6 +7,7 @@ use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Movie;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -19,6 +20,10 @@ use Illuminate\Database\Eloquent\Model;
 class MovieResource extends Resource
 {
     use UniqueSlugTrait;
+
+    protected static ?string $navigationGroup = 'Reviews';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $model = Movie::class;
 
@@ -50,7 +55,15 @@ class MovieResource extends Resource
                         ->label('Description'),
                 ]),
 
-                Forms\Components\Section::make()->schema([
+                Forms\Components\Section::make('Director / Actors')->schema([
+                    Select::make('director')
+                        ->label('Director')
+                        ->relationship('director', 'surname')
+                        ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
+                        ->searchable()
+                        ->preload(10)
+                        ->createOptionForm(DirectorResource::externalFormFields()),
+
                     Repeater::make('actorMovies')
                         ->label('Actors')
                         ->relationship()
@@ -59,9 +72,9 @@ class MovieResource extends Resource
                                 ->label('Actor')
                                 ->relationship('actor', 'surname')
                                 ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
+                                ->searchable()
                                 ->preload(10)
                                 ->createOptionForm(ActorResource::externalFormFields())
-                                ->searchable()
                                 ->distinct(),
                             Forms\Components\TagsInput::make('roles')
                                 ->label('Roles')

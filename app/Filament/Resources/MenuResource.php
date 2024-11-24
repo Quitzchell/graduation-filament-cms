@@ -16,6 +16,10 @@ use Filament\Tables\Table;
 
 class MenuResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Content';
+
+    protected static ?string $navigationLabel = 'Menu';
+
     protected static ?string $model = Menu::class;
 
     protected static ?int $navigationSort = 1;

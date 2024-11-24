@@ -19,6 +19,10 @@ use Filament\Tables\Table;
 
 class ActorResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Reviews';
+
+    protected static ?string $navigationParentItem = 'Movies';
+
     protected static ?string $model = Actor::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -28,7 +32,6 @@ class ActorResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-
                     TextInput::make('name')
                         ->label('Name')
                         ->required(),
