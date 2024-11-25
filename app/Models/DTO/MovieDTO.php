@@ -27,7 +27,7 @@ class MovieDTO extends ReviewableDTO
             title: $movie->title,
             releaseYear: $movie->release_year,
             description: $movie->description,
-            trailerUrl: 'https://www.youtube.com/embed/'.$movie->trailer_id,
+            trailerUrl: $movie->trailer_id ? 'https://www.youtube.com/embed/'.$movie->trailer_id : null,
             director: $movie->director ? DirectorDTO::make($movie->director) : null,
             actors: collect($movie->actors)->map(fn ($actor) => ActorDTO::make($actor)),
         );
