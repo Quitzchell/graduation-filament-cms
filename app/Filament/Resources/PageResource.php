@@ -17,6 +17,8 @@ class PageResource extends Resource
 {
     use UniqueSlugTrait;
 
+    protected static ?string $navigationGroup = 'Content';
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

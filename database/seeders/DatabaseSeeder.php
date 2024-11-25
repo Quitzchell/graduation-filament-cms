@@ -16,9 +16,14 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             PageSeeder::class,
             ContentSeeder::class,
+            MenuPageSeeder::class,
             CategorySeeder::class,
             BlogPostSeeder::class,
-            MenuPageSeeder::class,
+            ActorSeeder::class,
+            DirectorSeeder::class,
+            MovieSeeder::class,
+            MovieRelationSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

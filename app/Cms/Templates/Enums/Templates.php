@@ -4,12 +4,13 @@ namespace App\Cms\Templates\Enums;
 
 use App\Cms\Templates\Blog;
 use App\Cms\Templates\Homepage;
+use App\Cms\Templates\Review;
 
 enum Templates: string
 {
     case HOMEPAGE = Homepage::class;
     case BLOG = Blog::class;
-    case REVIEW = 'App\Cms\Schemas\Review';
+    case REVIEW = Review::class;
 
     public static function getFormattedNames(): array
     {

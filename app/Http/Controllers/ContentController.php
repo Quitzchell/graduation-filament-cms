@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Actions\Blog\RenderBlogDetailAction;
 use App\Actions\Blog\RenderBlogOverviewAction;
 use App\Actions\Homepage\RenderHomepageAction;
+use App\Actions\Review\RenderReviewDetailAction;
+use App\Actions\Review\RenderReviewOverviewAction;
 use App\Cms\Templates\Enums\Templates;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
@@ -68,9 +70,17 @@ class ContentController
         return $detailAction->execute($segments);
     }
 
-    // todo: implement when Review is ready
-    //    public function getReview(Page $page, Request $request, array $segments): JsonResponse
-    //    {
-    //        return;
-    //    }
+    public function getReview(
+        Page $page,
+        Request $request,
+        array $segments,
+        RenderReviewOverviewAction $overviewAction,
+        RenderReviewDetailAction $detailAction): JsonResponse
+    {
+        if (count($segments) === 1) {
+            return $overviewAction->execute($page);
+        }
+
+        return $detailAction->execute($segments);
+    }
 }

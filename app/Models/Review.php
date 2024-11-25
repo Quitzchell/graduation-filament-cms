@@ -1,37 +1,37 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use App\Models\Interfaces\HasContent;
 use App\Models\Traits\ProvideContent;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class BlogPost extends Model implements HasContent
+class Review extends Model implements HasContent
 {
     use ProvideContent;
 
-    protected $table = 'blog_posts';
+    protected $table = 'reviews';
 
     protected $casts = [
         'published' => 'boolean',
+        'published_at' => 'date',
     ];
 
     protected $fillable = [
+        'reviewable_type',
+        'reviewable_id',
         'title',
         'slug',
         'excerpt',
         'image',
-        'category_id',
+        'score',
         'published_at',
-        'published',
     ];
 
     /* Relations */
-    public function category(): BelongsTo
+    public function reviewable(): MorphTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->morphTo();
     }
 }

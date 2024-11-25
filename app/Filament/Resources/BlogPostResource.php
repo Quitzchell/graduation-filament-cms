@@ -13,11 +13,14 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BlogPostResource extends Resource
 {
     use UniqueSlugTrait;
+
+    protected static ?string $navigationGroup = 'Blog';
 
     protected static ?string $model = BlogPost::class;
 
@@ -60,7 +63,7 @@ class BlogPostResource extends Resource
                         ->displayFormat('d-m-Y')
                         ->required(),
 
-                    Forms\Components\ToggleButtons::make('Published')
+                    Forms\Components\ToggleButtons::make('published')
                         ->label('Published')
                         ->boolean()
                         ->inline()
@@ -78,7 +81,13 @@ class BlogPostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->label('Title')
+                    ->sortable(),
+                TextColumn::make('published_at')
+                    ->label('Published at')
+                    ->date('d-m-Y')
+                    ->sortable(),
             ])
             ->filters([
                 //
