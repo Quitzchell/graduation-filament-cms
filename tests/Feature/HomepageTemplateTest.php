@@ -16,9 +16,9 @@ it('can fill a page with the homepage template', function () {
     livewire(CreatePage::class)
         ->fillForm([
             'name' => 'Name of the page',
-	    'template' => Templates::HOMEPAGE->value,
+            'template' => Templates::HOMEPAGE->value,
         ])
-	->fillForm([
+        ->fillForm([
             'blocks' => [
                 [
                     'type' => 'common\\paragraph',
