@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class DirectorResource extends Resource
@@ -76,18 +77,17 @@ class DirectorResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('full_name')
+                    ->label('Name')
+                    ->searchable(['name', 'surname'])
+                    ->sortable(['name', 'surname']),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteAction::make(),
             ]);
     }
 
