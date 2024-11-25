@@ -31,5 +31,6 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'admin' => env('ADMIN_PASSWORD'),
     'google_maps_key' => env('GOOGLE_MAPS_API_KEY'),
 ];
