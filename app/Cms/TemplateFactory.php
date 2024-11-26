@@ -25,7 +25,9 @@ class TemplateFactory
 
         $templateClas = new $template;
 
-        return $templateClas instanceof HasFormSchema ? $templateClas->getForm() : [];
+        return $templateClas instanceof HasFormSchema
+            ? $templateClas->getForm()
+            : [];
     }
 
     protected static function extractFieldNames(array $components): array
