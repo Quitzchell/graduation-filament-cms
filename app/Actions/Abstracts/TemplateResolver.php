@@ -18,7 +18,7 @@ abstract class TemplateResolver
     {
         // fixme: realise something for Meta
         return response()->json(array_merge([
-            '_template' => strtolower(class_basename($page->template)),
+            '_template' => strtolower($page->template::getName()),
             'meta' => [
                 'title' => null,
                 'description' => null,
