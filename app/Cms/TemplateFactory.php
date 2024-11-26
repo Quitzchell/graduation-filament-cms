@@ -23,10 +23,10 @@ class TemplateFactory
             abort(404);
         }
 
-        $templateClas = new $template;
+        $templateClass = new $template;
 
-        return $templateClas instanceof HasTemplateSchema
-            ? $templateClas->getForm()
+        return $templateClass instanceof HasTemplateSchema
+            ? $templateClass->getForm()
             : [];
     }
 
