@@ -2,12 +2,12 @@
 
 namespace App\Cms\Blocks\Common;
 
-use App\Cms\Blocks\Interfaces\BlockContract;
+use App\Cms\Blocks\Interfaces\HasBlockSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 
-class Paragraph implements BlockContract
+class Paragraph implements HasBlockSchema
 {
     public static function getBlock(): Block
     {

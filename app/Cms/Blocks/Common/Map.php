@@ -2,14 +2,14 @@
 
 namespace App\Cms\Blocks\Common;
 
-use App\Cms\Blocks\Interfaces\BlockContract;
+use App\Cms\Blocks\Interfaces\HasBlockSchema;
 use Cheesegrits\FilamentGoogleMaps\Fields\Geocomplete;
 use Cheesegrits\FilamentGoogleMaps\Fields\Map as GoogleMapPicker;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 
-class Map implements BlockContract
+class Map implements HasBlockSchema
 {
     public static function getBlock(): Block
     {

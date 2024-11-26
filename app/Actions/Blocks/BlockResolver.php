@@ -3,7 +3,7 @@
 namespace App\Actions\Blocks;
 
 use App\Cms\Blocks\DTO\BlockData;
-use App\Cms\Blocks\Interfaces\BlockContract;
+use App\Cms\Blocks\Interfaces\HasBlockSchema;
 
 class BlockResolver
 {
@@ -17,7 +17,7 @@ class BlockResolver
         $blockName = implode('\\', array_map('ucfirst', explode('\\', $block['type'])));
 
         $blockClass = 'App\\CMS\\Blocks\\'.$blockName;
-        if (! is_subclass_of($blockClass, BlockContract::class)) {
+        if (! is_subclass_of($blockClass, HasBlockSchema::class)) {
             throw new \InvalidArgumentException("Class $blockClass must implement BlockContract");
         }
 
