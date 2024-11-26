@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Models\Interfaces\HasContent;
-use App\Models\Traits\ProvideContent;
+use App\Models\Traits\ProvidesContentTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Review extends Model implements HasContent
 {
-    use ProvideContent;
+    use ProvidesContentTrait;
 
     protected $table = 'reviews';
 
