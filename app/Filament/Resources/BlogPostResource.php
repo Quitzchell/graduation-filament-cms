@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Cms\ObjectTemplates\BlogPost as BlogPostSchema;
+use App\Cms\ObjectTemplates\BlogPostTemplate;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\BlogPost;
@@ -71,9 +71,9 @@ class BlogPostResource extends Resource
                 ]),
 
                 Forms\Components\Hidden::make('template')
-                    ->afterStateHydrated(fn (Set $set) => $set('template', BlogPostSchema::class)),
+                    ->afterStateHydrated(fn (Set $set) => $set('template', BlogPostTemplate::class)),
                 Forms\Components\Section::make('Content')
-                    ->schema(BlogPostSchema::getForm()),
+                    ->schema(BlogPostTemplate::getForm()),
             ]);
     }
 
