@@ -11,8 +11,13 @@ use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 
-class Blog implements HasTemplateSchema
+class BlogTemplate implements HasTemplateSchema
 {
+    public static function getName(): string
+    {
+        return 'Blog';
+    }
+
     public static function getForm(): array
     {
         return [
