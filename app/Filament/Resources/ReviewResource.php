@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Cms\ObjectContentSchemas\Review as ReviewSchema;
+use App\Cms\ObjectTemplates\Review as ReviewSchema;
 use App\Filament\Resources\ReviewResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Book;
