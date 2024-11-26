@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Cms\ObjectContentSchemas\BlogPost as BlogPostSchema;
+use App\Cms\ObjectTemplates\BlogPost as BlogPostSchema;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\BlogPost;

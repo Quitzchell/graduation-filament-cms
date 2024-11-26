@@ -6,12 +6,12 @@ use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
 use App\Cms\Blocks\Common\Paragraph;
-use App\Cms\Templates\Interfaces\HasFormSchema;
+use App\Cms\Templates\Interfaces\HasTemplateSchema;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 
-class Homepage implements HasFormSchema
+class Homepage implements HasTemplateSchema
 {
     public static function getForm(): array
     {
