@@ -4,13 +4,13 @@ namespace App\Models;
 
 use App\Models\Interfaces\HasContent;
 use App\Models\Interfaces\HasUrl;
-use App\Models\Traits\ProvideContent;
+use App\Models\Traits\ProvidesContentTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Page extends Model implements HasContent, HasUrl
 {
-    use ProvideContent;
+    use ProvidesContentTrait;
 
     protected $table = 'pages';
 
