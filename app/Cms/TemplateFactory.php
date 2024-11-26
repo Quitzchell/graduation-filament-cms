@@ -3,6 +3,7 @@
 namespace App\Cms;
 
 use App\Cms\Templates\Enums\Templates;
+use App\Cms\Templates\Interfaces\HasFormSchema;
 
 class TemplateFactory
 {
@@ -18,7 +19,12 @@ class TemplateFactory
 
     public static function loadTemplateSchema(string $template): array
     {
-        return class_exists($template) ? (new $template)->getForm() : [];
+        if (!class_exists($template)) {
+            abort(404);
+        }
+
+        $templateClas = new $template;
+        return $templateClas instanceOf HasFormSchema ? $templateClas->getForm() : [];
     }
 
     protected static function extractFieldNames(array $components): array
