@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Cms\ObjectTemplates\Review as ReviewSchema;
+use App\Cms\ObjectTemplates\ReviewTemplate;
 use App\Filament\Resources\ReviewResource\Pages;
 use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Book;
@@ -74,9 +74,9 @@ class ReviewResource extends Resource
                     ]),
 
                 Forms\Components\Hidden::make('template')
-                    ->afterStateHydrated(fn (Set $set) => $set('template', ReviewSchema::class)),
+                    ->afterStateHydrated(fn (Set $set) => $set('template', ReviewTemplate::class)),
                 Forms\Components\Section::make('Content')
-                    ->schema(ReviewSchema::getForm()),
+                    ->schema(ReviewTemplate::getForm()),
 
                 Forms\Components\Section::make()->columns()->schema([
                     Forms\Components\DatePicker::make('published_at')

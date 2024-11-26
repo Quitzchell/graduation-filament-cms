@@ -1,30 +1,19 @@
 <?php
 
-namespace App\Cms\Templates;
+namespace App\Cms\ObjectTemplates;
 
 use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
 use App\Cms\Blocks\Common\Paragraph;
-use App\Cms\Templates\Interfaces\HasTemplateSchema;
+use App\Cms\ObjectTemplates\Interface\HasObjectTemplateSchema;
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
 
-class Blog implements HasTemplateSchema
+class ReviewTemplate implements HasObjectTemplateSchema
 {
     public static function getForm(): array
     {
         return [
-            TextInput::make('header_title')
-                ->label('Header title'),
-
-            FileUpload::make('header_image')
-                ->label('Header Image')
-                ->image()
-                ->preserveFilenames()
-                ->required(),
-
             Builder::make('blocks')
                 ->schema([
                     CallToAction::getBlock(),

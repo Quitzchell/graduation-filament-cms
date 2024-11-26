@@ -11,8 +11,13 @@ use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 
-class Review implements HasTemplateSchema
+class HomeTemplate implements HasTemplateSchema
 {
+    public static function getName(): string
+    {
+        return 'Homepage';
+    }
+
     public static function getForm(): array
     {
         return [

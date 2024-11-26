@@ -2,7 +2,7 @@
 
 namespace App\Actions\Navigation;
 
-use App\Cms\Templates\Homepage;
+use App\Cms\Templates\HomeTemplate;
 use App\Models\Menu;
 use Illuminate\Http\JsonResponse;
 
@@ -12,7 +12,7 @@ class RenderNavigation
     {
         $pages = Menu::find(1)
             ->pages
-            ->where('template', '!=', Homepage::class)
+            ->where('template', '!=', HomeTemplate::class)
             ->map(static fn ($page) => [
                 'name' => $page->name,
                 'uri' => $page->uri(),
