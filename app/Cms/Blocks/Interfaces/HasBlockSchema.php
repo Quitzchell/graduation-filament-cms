@@ -4,7 +4,7 @@ namespace App\Cms\Blocks\Interfaces;
 
 use Filament\Forms\Components\Builder\Block;
 
-interface BlockContract
+interface HasBlockSchema
 {
     public static function getBlock(): Block;
 
