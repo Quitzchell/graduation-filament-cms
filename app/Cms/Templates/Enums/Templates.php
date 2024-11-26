@@ -2,15 +2,16 @@
 
 namespace App\Cms\Templates\Enums;
 
-use App\Cms\Templates\Blog;
-use App\Cms\Templates\Homepage;
-use App\Cms\Templates\Review;
+use App\Cms\Templates\BlogTemplate;
+use App\Cms\Templates\HomeTemplate;
+use App\Cms\Templates\Interfaces\HasTemplateSchema;
+use App\Cms\Templates\ReviewTemplate;
 
 enum Templates: string
 {
-    case HOMEPAGE = Homepage::class;
-    case BLOG = Blog::class;
-    case REVIEW = Review::class;
+    case HOMEPAGE = HomeTemplate::class;
+    case BLOG = BlogTemplate::class;
+    case REVIEW = ReviewTemplate::class;
 
     public static function getFormattedNames(): array
     {
@@ -18,7 +19,10 @@ enum Templates: string
         $formattedNames = [];
 
         foreach ($cases as $case) {
-            $formattedNames[$case->value] = ucfirst(strtolower($case->name));
+            $templateClass = new $case->value;
+            if ($templateClass instanceof HasTemplateSchema) {
+                $formattedNames[$templateClass::class] = $templateClass->getName();
+            }
         }
 
         return $formattedNames;
