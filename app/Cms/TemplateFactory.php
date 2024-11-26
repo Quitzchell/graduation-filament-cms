@@ -19,12 +19,13 @@ class TemplateFactory
 
     public static function loadTemplateSchema(string $template): array
     {
-        if (!class_exists($template)) {
+        if (! class_exists($template)) {
             abort(404);
         }
 
         $templateClas = new $template;
-        return $templateClas instanceOf HasFormSchema ? $templateClas->getForm() : [];
+
+        return $templateClas instanceof HasFormSchema ? $templateClas->getForm() : [];
     }
 
     protected static function extractFieldNames(array $components): array
