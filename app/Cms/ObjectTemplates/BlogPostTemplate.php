@@ -6,10 +6,10 @@ use App\Cms\Blocks\Common\CallToAction;
 use App\Cms\Blocks\Common\Image;
 use App\Cms\Blocks\Common\Map;
 use App\Cms\Blocks\Common\Paragraph;
-use App\Cms\Templates\Interfaces\HasTemplateSchema;
+use App\Cms\ObjectTemplates\Interface\HasObjectTemplateSchema;
 use Filament\Forms\Components\Builder;
 
-class BlogPost implements HasTemplateSchema
+class BlogPostTemplate implements HasObjectTemplateSchema
 {
     public static function getForm(): array
     {
