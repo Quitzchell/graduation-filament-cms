@@ -64,7 +64,7 @@ class MenuResource extends Resource
                         ])
                         ->mutateRelationshipDataBeforeSaveUsing(function ($data, $record) {
                             $record->page_id = $data['page_id'];
-                            $record->children = !empty($data['children']) ? $data['children'] : [];
+                            $record->children = ! empty($data['children']) ? $data['children'] : [];
 
                             $record->save();
                         }),
