@@ -11,11 +11,11 @@ class RenderNavigation
     public function __invoke(): JsonResponse
     {
         $pages = Menu::find(1)
-            ->pages
-            ->where('template', '!=', HomeTemplate::class)
-            ->map(static fn ($page) => [
-                'name' => $page->name,
-                'uri' => $page->uri(),
+            ->items
+            ->filter(fn ($item) => $item->page->template !== HomeTemplate::class)
+            ->map(fn ($item) => [
+                'name' => $item->page->name,
+                'uri' => $item->page->uri,
             ])->values();
 
         return response()->json($pages);

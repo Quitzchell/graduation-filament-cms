@@ -17,7 +17,7 @@ abstract class TemplateResolver
 
     protected function render(Page $page, array $data = []): JsonResponse
     {
-        // fixme: realise something for Meta
+        // todo: realise something for Meta
         $templateClass = new ($page->template);
 
         if (! $templateClass instanceof HasTemplateSchema) {

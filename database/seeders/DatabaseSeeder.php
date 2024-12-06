@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             PageSeeder::class,
             ContentSeeder::class,
-            MenuPageSeeder::class,
+            MenuManagerSeeder::class,
             CategorySeeder::class,
             BlogPostSeeder::class,
             ActorSeeder::class,

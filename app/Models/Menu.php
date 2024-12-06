@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Pivots\MenuPage;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
@@ -17,13 +15,10 @@ class Menu extends Model
 
     /* Relations */
 
-    public function pages(): BelongsToMany
+    public function items(): HasMany
     {
-        return $this->belongsToMany(Page::class);
-    }
-
-    public function MenuPages(): HasMany
-    {
-        return $this->hasMany(MenuPage::class);
+        return $this->hasMany(MenuManager::class)
+            ->whereNull('parent_id')
+            ->orderBy('sort');
     }
 }
