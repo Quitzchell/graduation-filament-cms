@@ -38,10 +38,6 @@ class TemplateFactory
             if (method_exists($component, 'getName')) {
                 $fields[] = $component->getName();
             }
-
-            if (method_exists($component, 'getSchema')) {
-                $fields = array_merge($fields, self::extractFieldNames($component->getSchema()));
-            }
         }
 
         return $fields;

@@ -11,9 +11,7 @@ final readonly class BlockData implements Arrayable, JsonSerializable
         private string $template,
         private string $identifier,
         private array $data,
-    ) {
-        //
-    }
+    ) {}
 
     public function toArray(): array
     {
