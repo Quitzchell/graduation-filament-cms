@@ -21,7 +21,7 @@ class BlockResolver
             throw new \InvalidArgumentException("Class $blockClass must implement BlockContract");
         }
 
-        $resolvedData = (new $blockClass())->resolve($block['data']);
+        $resolvedData = (new $blockClass)->resolve($block['data']);
 
         return new BlockData($blockName, '', $resolvedData);
     }
