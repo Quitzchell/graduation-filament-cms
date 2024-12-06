@@ -8,5 +8,5 @@ interface HasBlockSchema
 {
     public static function getBlock(): Block;
 
-    public static function resolve(array $blockData): array;
+    public function resolve(array $blockData): array;
 }
