@@ -21,7 +21,6 @@ class RenderReviewDetailAction extends ObjectResolver
         }
 
         $reviewable = $review->reviewable;
-
         $reviewableDTO = match (true) {
             $reviewable instanceof Movie => MovieDTO::make($reviewable),
             // $reviewable instanceof Book => BookDTO::from($reviewable),

@@ -25,6 +25,8 @@ class PageResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $templateFactory = app(TemplateFactory::class);
+
         return $form
             ->schema([
                 Forms\Components\Section::make()->schema([
@@ -41,14 +43,14 @@ class PageResource extends Resource
                         ->required(),
 
                     Forms\Components\Select::make('template')
-                        ->options(TemplateFactory::getTemplateNames())
+                        ->options($templateFactory->getTemplateNames())
                         ->required()
                         ->live(),
 
                     Forms\Components\Section::make()
-                        ->schema(function (Get $get) {
+                        ->schema(function (Get $get) use ($templateFactory) {
                             if ($get('template')) {
-                                return TemplateFactory::loadTemplateSchema($get('template'));
+                                return $templateFactory->loadTemplateSchema($get('template'));
                             }
 
                             return [];
