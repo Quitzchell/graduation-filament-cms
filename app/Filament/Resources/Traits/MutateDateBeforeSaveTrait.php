@@ -9,7 +9,8 @@ trait MutateDateBeforeSaveTrait
 {
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $templateFields = TemplateFactory::getTemplateFields($data['template']);
+        $templateFactory = app(TemplateFactory::class);
+        $templateFields = $templateFactory->getTemplateFields($data['template']);
         $cmsContent = Arr::only($data, $templateFields);
 
         foreach ($cmsContent as $name => $value) {

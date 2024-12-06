@@ -7,7 +7,9 @@ use App\Actions\Blog\RenderBlogOverviewAction;
 use App\Actions\Homepage\RenderHomepageAction;
 use App\Actions\Review\RenderReviewDetailAction;
 use App\Actions\Review\RenderReviewOverviewAction;
-use App\Cms\Templates\Enums\Templates;
+use App\Cms\Templates\BlogTemplate;
+use App\Cms\Templates\HomeTemplate;
+use App\Cms\Templates\ReviewTemplate;
 use App\Models\Page;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,9 +44,9 @@ class ContentController
     private function resolveMethodForTemplate(string $template): string
     {
         return match ($template) {
-            Templates::HOMEPAGE->value => 'getHomepage',
-            Templates::BLOG->value => 'getBlog',
-            Templates::REVIEW->value => 'getReview',
+            HomeTemplate::class => 'getHomepage',
+            BlogTemplate::class => 'getBlog',
+            ReviewTemplate::class => 'getReview',
             default => throw new \InvalidArgumentException('Invalid template'),
         };
     }
