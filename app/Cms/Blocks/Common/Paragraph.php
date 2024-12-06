@@ -30,7 +30,7 @@ class Paragraph implements HasBlockSchema
             ]);
     }
 
-    public static function resolve(array $blockData): array
+    public function resolve(array $blockData): array
     {
         return [
             'title' => $blockData['title'],
