@@ -20,7 +20,7 @@ class Image implements HasBlockSchema
             ]);
     }
 
-    public static function resolve(array $blockData): array
+    public function resolve(array $blockData): array
     {
         return [
             'image' => asset('storage/'.$blockData['image']),
