@@ -28,48 +28,45 @@ class MenuResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Section::make()->schema([
-                    Forms\Components\Repeater::make('menuPages')
-                        ->label('Menu items')
-                        ->relationship()
-                        ->collapsible()
-                        ->defaultItems(0)
-                        ->schema([
-                            Select::make('page_id')
-                                ->label('Menu item')
-                                ->relationship('page', 'name')
-                                ->required()
-                                ->reactive(),
+        return $form->schema([
+            Forms\Components\Section::make()->schema([
+                Forms\Components\Repeater::make('items')
+                    ->relationship('items')
+                    ->label('Menu items')
+                    ->reorderable()
+                    ->orderColumn()
+                    ->schema([
+                        Select::make('page_id')
+                            ->label('Menu item')
+                            ->relationship('page', 'name')
+                            ->live()
+                            ->required(),
 
-                            Repeater::make('children')
-                                ->label('Submenu Items')
-                                ->hidden(fn (Get $get): bool => empty($get('page_id')))
-                                ->reactive()
-                                ->simple(
-                                    Select::make('child_id')
-                                        ->relationship('page', 'name')
-                                        ->label('Child Page')
-                                )
-                                ->afterStateHydrated(function ($record, $get, Forms\Set $set) {
-                                    if ($record) {
-                                        $recordKey = $record->getKey();
-                                        $set(
-                                            "../../menuPages.record-{$recordKey}.children",
-                                            array_map(fn ($child) => ['child_id' => $child], $record->children)
-                                        );
-                                    }
-                                }),
-                        ])
-                        ->mutateRelationshipDataBeforeSaveUsing(function ($data, $record) {
-                            $record->page_id = $data['page_id'];
-                            $record->children = ! empty($data['children']) ? $data['children'] : [];
+                        Repeater::make('children')
+                            ->relationship('children')
+                            ->reorderable()
+                            ->orderColumn()
+                            ->defaultItems(0)
+                            ->live()
+                            ->hidden(fn (Get $get): bool => empty($get('page_id')))
+                            ->simple(
+                                Select::make('page_id')
+                                    ->relationship('page', 'name')
+                                    ->label('Submenu item')
+                            )
+                            ->mutateRelationshipDataBeforeSaveUsing(function ($state, $data, $record) {
+                                $data['menu_id'] = $record->menu_id;
 
-                            $record->save();
-                        }),
-                ]),
-            ]);
+                                return $data;
+                            })
+                            ->mutateRelationshipDataBeforeCreateUsing(function ($state, $data, $record) {
+                                $data['menu_id'] = $record->menu_id;
+
+                                return $data;
+                            }),
+                    ]),
+            ]),
+        ]);
     }
 
     public static function table(Table $table): Table
