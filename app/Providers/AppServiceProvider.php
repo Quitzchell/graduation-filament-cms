@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Cms\TemplateFactory;
+use App\Cms\Templates\BlogTemplate;
+use App\Cms\Templates\HomeTemplate;
+use App\Cms\Templates\ReviewTemplate;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +16,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(TemplateFactory::class, function () {
+            return new TemplateFactory([
+                HomeTemplate::class => new HomeTemplate,
+                BlogTemplate::class => new BlogTemplate,
+                ReviewTemplate::class => new ReviewTemplate,
+            ]);
+        });
     }
 
     /**

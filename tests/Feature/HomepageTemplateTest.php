@@ -1,6 +1,6 @@
 <?php
 
-use App\Cms\Templates\Enums\Templates;
+use App\Cms\Templates\HomeTemplate;
 use App\Filament\Resources\PageResource\Pages\CreatePage;
 use Filament\Forms\Components\Builder;
 
@@ -16,7 +16,7 @@ it('can fill a page with the homepage template', function () {
     livewire(CreatePage::class)
         ->fillForm([
             'name' => 'Name of the page',
-            'template' => Templates::HOMEPAGE->value,
+            'template' => HomeTemplate::class,
         ])
         ->fillForm([
             'blocks' => [

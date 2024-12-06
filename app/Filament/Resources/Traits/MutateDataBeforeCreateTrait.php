@@ -11,8 +11,9 @@ trait MutateDataBeforeCreateTrait
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+        $templateFactory = app(TemplateFactory::class);
         if (! empty($data['template'])) {
-            $templateFields = TemplateFactory::getTemplateFields($data['template']);
+            $templateFields = $templateFactory->getTemplateFields($data['template']);
             $this->cmsContent = Arr::only($data, $templateFields);
         }
 

@@ -13,12 +13,12 @@ use Filament\Forms\Components\TextInput;
 
 class ReviewTemplate implements HasTemplateSchema
 {
-    public static function getName(): string
+    public function getName(): string
     {
         return 'Review';
     }
 
-    public static function getForm(): array
+    public function getForm(): array
     {
         return [
             TextInput::make('header_title')
