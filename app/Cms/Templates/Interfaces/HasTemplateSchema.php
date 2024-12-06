@@ -4,7 +4,7 @@ namespace App\Cms\Templates\Interfaces;
 
 interface HasTemplateSchema
 {
-    public static function getName(): string;
+    public function getName(): string;
 
-    public static function getForm(): array;
+    public function getForm(): array;
 }
