@@ -19,8 +19,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MovieResource extends Resource
 {
-    use UniqueSlugTrait;
-
     protected static ?string $navigationGroup = 'Reviews';
 
     protected static ?int $navigationSort = 2;
