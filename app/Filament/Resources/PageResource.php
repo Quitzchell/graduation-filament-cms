@@ -66,7 +66,7 @@ class PageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Page name'),
                 Tables\Columns\TextColumn::make('template')
-                    ->formatStateUsing(fn ($state) => (new $state())->getName()),
+                    ->formatStateUsing(fn ($state) => (new $state)->getName()),
             ])
             ->filters([
                 //

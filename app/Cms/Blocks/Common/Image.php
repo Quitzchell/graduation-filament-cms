@@ -12,7 +12,7 @@ class Image implements HasBlockSchema
 {
     public static function getNamespace(): string
     {
-        return "Common";
+        return 'Common';
     }
 
     public static function getBlock(): Block
@@ -21,7 +21,7 @@ class Image implements HasBlockSchema
             ->label('Image')
             ->schema([
                 Hidden::make('namespace')
-                    ->afterStateHydrated(fn(Set $set) => $set('namespace', static::getNamespace())),
+                    ->afterStateHydrated(fn (Set $set) => $set('namespace', static::getNamespace())),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()

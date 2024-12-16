@@ -14,7 +14,7 @@ class CallToAction implements HasBlockSchema
 {
     public static function getNamespace(): string
     {
-        return "Common";
+        return 'Common';
     }
 
     public static function getBlock(): Block
@@ -23,7 +23,7 @@ class CallToAction implements HasBlockSchema
             ->label('Call to Action')
             ->schema([
                 Hidden::make('namespace')
-                    ->afterStateHydrated(fn(Set $set) => $set('namespace', static::getNamespace())),
+                    ->afterStateHydrated(fn (Set $set) => $set('namespace', static::getNamespace())),
                 TextInput::make('title')
                     ->label('Title'),
                 RichEditor::make('text')

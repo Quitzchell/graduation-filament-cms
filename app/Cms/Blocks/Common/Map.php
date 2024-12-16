@@ -15,7 +15,7 @@ class Map implements HasBlockSchema
 {
     public static function getNamespace(): string
     {
-        return "Common";
+        return 'Common';
     }
 
     public static function getBlock(): Block
@@ -24,7 +24,7 @@ class Map implements HasBlockSchema
             ->label('Map')
             ->schema([
                 Hidden::make('namespace')
-                    ->afterStateHydrated(fn(Set $set) => $set('namespace', static::getNamespace())),
+                    ->afterStateHydrated(fn (Set $set) => $set('namespace', static::getNamespace())),
                 TextInput::make('title')
                     ->label('Title'),
                 RichEditor::make('text')
@@ -60,15 +60,15 @@ class Map implements HasBlockSchema
                     ->minChars(5)
                     ->live()
                     ->afterStateHydrated(function ($state, callable $set) {
-                        if (isset($state['formatted']) || !isset($state['formatted_address'])) {
+                        if (isset($state['formatted']) || ! isset($state['formatted_address'])) {
                             $set('address.formatted_address', $state['formatted'] ?? '');
                         }
                     })
                     ->afterStateUpdated(function ($state, callable $set) {
-                        if (!empty($state['formatted_address'])) {
+                        if (! empty($state['formatted_address'])) {
                             $set('address.formatted', $state['formatted_address']);
                         }
-                        if (!empty($state['lat']) && !empty($state['lng'])) {
+                        if (! empty($state['lat']) && ! empty($state['lng'])) {
                             $set('location.lat', $state['lat']);
                             $set('location.lng', $state['lng']);
                         }
