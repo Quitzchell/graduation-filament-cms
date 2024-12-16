@@ -15,8 +15,6 @@ class RenderHomepageAction extends TemplateResolver
             'headerTitle' => $page->content('header_title'),
         ];
 
-        $this->resolver->execute($page->content('blocks'));
-
         return $this->render($page, [
             'headerItems' => $headerItems,
             'blocks' => $this->resolver->execute($page->content('blocks')),

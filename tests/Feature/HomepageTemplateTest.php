@@ -21,20 +21,22 @@ it('can fill a page with the homepage template', function () {
         ->fillForm([
             'blocks' => [
                 [
-                    'type' => 'common\\paragraph',
+                    'type' => 'paragraph',
                     'data' => [
+                        'namespace' => 'Common',
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
                     ],
                 ],
                 [
                     'data' => [
+                        'namespace' => 'Common',
                         'text' => 'Text on the Call to Action block',
                         'title' => 'Title on the Call to Action block',
                         'urlable_id' => 'App\\Models\\Page:1',
                         'button_text' => 'Button Text on the Call to Action block',
                     ],
-                    'type' => 'common\\callToAction',
+                    'type' => 'callToAction',
                 ],
             ],
         ])
@@ -45,20 +47,22 @@ it('can fill a page with the homepage template', function () {
         ->assertFormSet([
             'blocks' => [
                 [
-                    'type' => 'common\\paragraph',
+                    'type' => 'paragraph',
                     'data' => [
+                        'namespace' => 'Common',
                         'title' => 'This is a title on the paragraph block',
                         'text' => 'This is a text on the paragraph block',
                     ],
                 ],
                 [
                     'data' => [
+                        'namespace' => 'Common',
                         'text' => 'Text on the Call to Action block',
                         'title' => 'Title on the Call to Action block',
                         'urlable_id' => 'App\\Models\\Page:1',
                         'button_text' => 'Button Text on the Call to Action block',
                     ],
-                    'type' => 'common\\callToAction',
+                    'type' => 'callToAction',
                 ],
             ],
         ]);
