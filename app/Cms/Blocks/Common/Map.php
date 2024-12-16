@@ -6,16 +6,25 @@ use App\Cms\Blocks\Interfaces\HasBlockSchema;
 use Cheesegrits\FilamentGoogleMaps\Fields\Geocomplete;
 use Cheesegrits\FilamentGoogleMaps\Fields\Map as GoogleMapPicker;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 
 class Map implements HasBlockSchema
 {
+    public static function getNamespace(): string
+    {
+        return "Common";
+    }
+
     public static function getBlock(): Block
     {
-        return Block::make('common\map')
+        return Block::make('map')
             ->label('Map')
             ->schema([
+                Hidden::make('namespace')
+                    ->afterStateHydrated(fn(Set $set) => $set('namespace', static::getNamespace())),
                 TextInput::make('title')
                     ->label('Title'),
                 RichEditor::make('text')
@@ -51,15 +60,15 @@ class Map implements HasBlockSchema
                     ->minChars(5)
                     ->live()
                     ->afterStateHydrated(function ($state, callable $set) {
-                        if (isset($state['formatted']) || ! isset($state['formatted_address'])) {
+                        if (isset($state['formatted']) || !isset($state['formatted_address'])) {
                             $set('address.formatted_address', $state['formatted'] ?? '');
                         }
                     })
                     ->afterStateUpdated(function ($state, callable $set) {
-                        if (! empty($state['formatted_address'])) {
+                        if (!empty($state['formatted_address'])) {
                             $set('address.formatted', $state['formatted_address']);
                         }
-                        if (! empty($state['lat']) && ! empty($state['lng'])) {
+                        if (!empty($state['lat']) && !empty($state['lng'])) {
                             $set('location.lat', $state['lat']);
                             $set('location.lng', $state['lng']);
                         }
