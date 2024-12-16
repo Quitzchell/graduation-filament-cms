@@ -13,7 +13,7 @@ class Paragraph implements HasBlockSchema
 {
     public static function getNamespace(): string
     {
-        return "Common";
+        return 'Common';
     }
 
     public static function getBlock(): Block
@@ -22,7 +22,7 @@ class Paragraph implements HasBlockSchema
             ->label('Paragraph')
             ->schema([
                 Hidden::make('namespace')
-                    ->afterStateHydrated(fn(Set $set) => $set('namespace', static::getNamespace())),
+                    ->afterStateHydrated(fn (Set $set) => $set('namespace', static::getNamespace())),
                 TextInput::make('title')
                     ->label('Title'),
                 RichEditor::make('text')

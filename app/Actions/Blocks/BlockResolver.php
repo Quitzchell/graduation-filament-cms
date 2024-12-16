@@ -17,11 +17,11 @@ class BlockResolver
         $blockName = sprintf('%s\%s', $block['data']['namespace'], ucfirst($block['type']));
         $blockClass = "App\\CMS\\Blocks\\$blockName";
 
-        if (!is_subclass_of($blockClass, HasBlockSchema::class)) {
-            throw new \InvalidArgumentException("Class $blockClass must implement " . HasBlockSchema::class);
+        if (! is_subclass_of($blockClass, HasBlockSchema::class)) {
+            throw new \InvalidArgumentException("Class $blockClass must implement ".HasBlockSchema::class);
         }
 
-        $resolvedData = (new $blockClass())->resolve($block['data']);
+        $resolvedData = (new $blockClass)->resolve($block['data']);
 
         return new BlockData($blockName, '', $resolvedData);
     }

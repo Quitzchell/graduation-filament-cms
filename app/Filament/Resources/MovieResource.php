@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MovieResource\Pages;
-use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Movie;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
@@ -53,17 +52,17 @@ class MovieResource extends Resource
                             ->url()
                             ->regex('/^(https?:\/\/(?:www\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/|e\/|videoseries\?v=)[a-zA-Z0-9_-]{11}(?:\?.*)?|https?:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}(?:\?.*)?)$/')
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn($state, $set) => $set('trailer_id', getYouTubeVideoId($state))),
+                            ->afterStateUpdated(fn ($state, $set) => $set('trailer_id', getYouTubeVideoId($state))),
 
                         Forms\Components\Hidden::make('trailer_id')
-                            ->afterStateHydrated(fn($state, $set) => $set('trailer_url', 'https://www.youtube.com/embed/' . getYouTubeVideoId($state))),
+                            ->afterStateHydrated(fn ($state, $set) => $set('trailer_url', 'https://www.youtube.com/embed/'.getYouTubeVideoId($state))),
                     ]),
 
                 Forms\Components\Section::make('Director & Actors')->schema([
                     Select::make('director')
                         ->label('Director')
                         ->relationship('director', 'surname')
-                        ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->full_name}")
+                        ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
                         ->searchable()
                         ->preload(10)
                         ->createOptionForm(DirectorResource::externalFormFields()),
@@ -76,7 +75,7 @@ class MovieResource extends Resource
                             Forms\Components\Select::make('actor_id')
                                 ->label('Actor')
                                 ->relationship('actor', 'surname')
-                                ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->full_name}")
+                                ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->full_name}")
                                 ->searchable()
                                 ->preload(10)
                                 ->createOptionForm(ActorResource::externalFormFields())
