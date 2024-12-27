@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MovieResource\Pages;
-use App\Filament\Resources\Traits\UniqueSlugTrait;
 use App\Models\Movie;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
@@ -19,8 +18,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MovieResource extends Resource
 {
-    use UniqueSlugTrait;
-
     protected static ?string $navigationGroup = 'Reviews';
 
     protected static ?int $navigationSort = 2;
@@ -33,31 +30,33 @@ class MovieResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('General information')->schema([
-                    TextInput::make('title')
-                        ->label('Title')
-                        ->required(),
+                Forms\Components\Section::make('General information')
+                    ->schema([
+                        TextInput::make('title')
+                            ->label('Title')
+                            ->required(),
 
-                    TextInput::make('release_year')
-                        ->label('Year of release')
-                        ->numeric()
-                        ->default(now()->year)
-                        ->minValue(1800)
-                        ->maxValue(2100),
+                        TextInput::make('release_year')
+                            ->label('Year of release')
+                            ->numeric()
+                            ->required()
+                            ->default(now()->year)
+                            ->minValue(1800)
+                            ->maxValue(2100),
 
-                    TextArea::make('description')
-                        ->label('Description'),
+                        TextArea::make('description')
+                            ->label('Description'),
 
-                    TextInput::make('trailer_url')
-                        ->label('Trailer link (YouTube)')
-                        ->url()
-                        ->regex('/^(https?:\/\/(?:www\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/|e\/|videoseries\?v=)[a-zA-Z0-9_-]{11}(?:\?.*)?|https?:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}(?:\?.*)?)$/')
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(fn ($state, $set) => $set('trailer_id', getYouTubeVideoId($state))),
+                        TextInput::make('trailer_url')
+                            ->label('Trailer link (YouTube)')
+                            ->url()
+                            ->regex('/^(https?:\/\/(?:www\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/|e\/|videoseries\?v=)[a-zA-Z0-9_-]{11}(?:\?.*)?|https?:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}(?:\?.*)?)$/')
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, $set) => $set('trailer_id', getYouTubeVideoId($state))),
 
-                    Forms\Components\Hidden::make('trailer_id')
-                        ->afterStateHydrated(fn ($state, $set) => $set('trailer_url', 'https://www.youtube.com/embed/'.getYouTubeVideoId($state))),
-                ]),
+                        Forms\Components\Hidden::make('trailer_id')
+                            ->afterStateHydrated(fn ($state, $set) => $set('trailer_url', 'https://www.youtube.com/embed/'.getYouTubeVideoId($state))),
+                    ]),
 
                 Forms\Components\Section::make('Director & Actors')->schema([
                     Select::make('director')
