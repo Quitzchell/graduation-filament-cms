@@ -26,6 +26,7 @@ class Review extends Model implements HasContent
         'excerpt',
         'image',
         'score',
+        'published',
         'published_at',
     ];
 
