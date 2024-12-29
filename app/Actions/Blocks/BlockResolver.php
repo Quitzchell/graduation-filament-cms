@@ -14,11 +14,11 @@ class BlockResolver
 
     private function resolveBlock(array $block): BlockData
     {
-        $blockName = implode('\\', array_map('ucfirst', explode('\\', $block['type'])));
+        $blockName = sprintf('%s\%s', $block['data']['namespace'], ucfirst($block['type']));
+        $blockClass = "App\\CMS\\Blocks\\$blockName";
 
-        $blockClass = 'App\\CMS\\Blocks\\'.$blockName;
         if (! is_subclass_of($blockClass, HasBlockSchema::class)) {
-            throw new \InvalidArgumentException("Class $blockClass must implement BlockContract");
+            throw new \InvalidArgumentException("Class $blockClass must implement ".HasBlockSchema::class);
         }
 
         $resolvedData = (new $blockClass)->resolve($block['data']);
