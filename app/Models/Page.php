@@ -41,6 +41,6 @@ class Page extends Model implements HasContent, HasUrl
 
     public function url($lang = null): string
     {
-        return config('app.url').'Page.php/'.$this->uri($lang);
+        return url($this->uri($lang));
     }
 }
