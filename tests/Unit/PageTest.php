@@ -21,5 +21,5 @@ it('can generate URI and URL correctly', function () {
     // Assert
     expect($uri)->toBe('test')
         ->and($url)->toBe(url('test'))
-        ->and($url)->toBe(config('app.url') . '/test');
+        ->and($url)->toBe(config('app.url').'/test');
 });
