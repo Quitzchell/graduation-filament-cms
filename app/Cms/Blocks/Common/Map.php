@@ -6,16 +6,25 @@ use App\Cms\Blocks\Interfaces\HasBlockSchema;
 use Cheesegrits\FilamentGoogleMaps\Fields\Geocomplete;
 use Cheesegrits\FilamentGoogleMaps\Fields\Map as GoogleMapPicker;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 
 class Map implements HasBlockSchema
 {
+    public static function getNamespace(): string
+    {
+        return 'Common';
+    }
+
     public static function getBlock(): Block
     {
-        return Block::make('common\map')
+        return Block::make('map')
             ->label('Map')
             ->schema([
+                Hidden::make('namespace')
+                    ->afterStateHydrated(fn (Set $set) => $set('namespace', static::getNamespace())),
                 TextInput::make('title')
                     ->label('Title'),
                 RichEditor::make('text')
