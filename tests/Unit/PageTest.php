@@ -1,6 +1,5 @@
 <?php
 
-use App\Cms\Templates\HomeTemplate;
 use App\Models\Page;
 
 beforeEach(function () {
@@ -20,8 +19,7 @@ it('can generate URI and URL correctly', function () {
     $url = $page->url();
 
     // Assert
-    expect($url)
-        ->toBe(url('test'))
-        ->and($uri)
-        ->toBe('test');
+    expect($uri)->toBe('test')
+        ->and($url)->toBe(url('test'))
+        ->and($url)->toBe(config('app.url') . '/test');
 });
