@@ -1,6 +1,5 @@
 <?php
 
-use App\Cms\Templates\HomeTemplate;
 use App\Models\Page;
 
 beforeEach(function () {
