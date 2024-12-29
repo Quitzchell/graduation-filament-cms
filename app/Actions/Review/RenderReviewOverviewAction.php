@@ -17,7 +17,7 @@ class RenderReviewOverviewAction extends TemplateResolver
     public function execute(Page $page): JsonResponse
     {
         $headerItems = [
-            'headerImage' => asset('storage/'.$page->content('header_image')),
+            'headerImage' => asset('storage/' . $page->content('header_image')),
             'headerTitle' => $page->content('header_title'),
         ];
 
@@ -28,9 +28,9 @@ class RenderReviewOverviewAction extends TemplateResolver
             ->map(function (Review $review) {
                 $reviewable = $review->reviewable;
 
-                $reviewableDTO = match (true) {
-                    $reviewable instanceof Movie => MovieDTO::make($reviewable),
-                    //                    $reviewable instanceof Book => BookDTO::from($reviewable),
+                $reviewableDTO = match (get_class($reviewable)) {
+                    Movie::class => MovieDTO::make($reviewable),
+                    // $reviewable instanceof Book => BookDTO::from($reviewable),
                     default => throw new InvalidArgumentException('Unknown reviewable type'),
                 };
 
