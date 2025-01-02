@@ -23,7 +23,6 @@ class RenderReviewOverviewAction extends TemplateResolver
 
         $reviewItems = Review::where('published', true)
             ->with('reviewable')
-            ->take(10)
             ->get()
             ->map(function (Review $review) {
                 $reviewable = $review->reviewable;
