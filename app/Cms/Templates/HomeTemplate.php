@@ -27,6 +27,7 @@ class HomeTemplate implements HasTemplateSchema
             FileUpload::make('header_image')
                 ->label('Header Image')
                 ->image()
+                ->imageEditor()
                 ->preserveFilenames()
                 ->required(),
 
