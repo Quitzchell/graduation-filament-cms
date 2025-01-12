@@ -23,10 +23,6 @@ class Page extends Model implements HasContent, HasUrl
         'content',
     ];
 
-    protected $casts = [
-        'content' => 'array',
-    ];
-
     /* Relations */
     public function menus(): BelongsToMany
     {
