@@ -33,7 +33,7 @@ class Page extends Model implements HasContent, HasUrl
         return $this->belongsToMany(Menu::class);
     }
 
-    /* Urlable */
+    /* HasUrl */
     public function uri($lang = null): string
     {
         return strtolower($this->name);
