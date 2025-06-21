@@ -1,12 +1,5 @@
-project_name="graduation-project"
+.DEFAULT_GOAL := dev
 
-.PHONY: all
-all: build up
-
-.PHONY: build
-build:
-	PROJECT_NAME="$(project_name)" docker compose build
-
-.PHONY: up
-up:
-	PROJECT_NAME="$(project_name)" docker compose up --no-build
+.PHONY: dev
+dev:
+	docker compose up development --build
