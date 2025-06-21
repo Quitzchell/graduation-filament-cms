@@ -32,7 +32,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->updatePHPIniFromConfig();
 
-        app(UrlGenerator::class)->forceScheme('https');
+        // Only force HTTPS in production
+        if ($this->app->environment('production')) {
+            app(UrlGenerator::class)->forceScheme('https');
+        }
         app(UrlGenerator::class)->forceRootUrl(config('app.asset_url'));
     }
 

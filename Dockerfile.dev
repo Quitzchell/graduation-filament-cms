@@ -1,0 +1,58 @@
+# Use PHP-FPM base image
+FROM php:8.3-fpm-alpine3.19 AS base
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Install dependencies
+RUN apk add --no-cache \
+    curl \
+    git \
+    icu-dev \
+    libintl \
+    libzip-dev \
+    oniguruma-dev \
+    nodejs \
+    npm \
+    nginx \
+    supervisor \
+    openssh \
+    autoconf \
+    gcc \
+    g++ \
+    make
+
+# Install required PHP extensions
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    mysqli \
+    intl \
+    zip \
+    bcmath \
+    opcache 
+
+# Install additional PHP extensions
+RUN pecl install redis && docker-php-ext-enable redis
+
+# Remove build dependencies to keep image small
+RUN apk del autoconf gcc g++ make
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy in application files
+COPY . .
+
+# Copy Nginx and Supervisor configs
+COPY docker/development/nginx.conf /etc/nginx/http.d/default.conf
+COPY docker/development/supervisord.conf /etc/supervisord.conf
+
+# Expose port 80 for web
+EXPOSE 80
+
+# Ensure www-data user exists and chown files
+RUN chown -R www-data:www-data /var/www/html
+
+# Use supervisor to run php-fpm and nginx
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
